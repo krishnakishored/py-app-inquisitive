@@ -1,0 +1,8 @@
+{
+    "quiz_type":1,
+    "num_of_questions": 10,
+    "question_bank_file":"thesaurus_gre.txt",
+    "sequential_practice":0,
+    "begin_from_question" :120
+}
+    
