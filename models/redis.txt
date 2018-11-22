@@ -1,0 +1,27 @@
+Redis Labs was founded in 2011 by Ofer Bengal, previously the founder and CEO of RiT Technologies, and Yiftach Shoolman, previously the founder and president of Crescendo Networks, acquired by F5 Networks.[2][3][4] On July 15, 2015, the creator of Redis and lead developer, Salvatore Sanfilippo, joined Redis Labs to lead open source development, and Redis Labs became the official sponsor of the open source project.[5] The company secured $4 million in seed funding from angel investors in August 2012,[6][7] an additional $9 million in series A funding led by Bain Capital Ventures and Carmel Ventures,[4][8] an additional $15m in Series B funding led by the existing investors and Silicon Valley Bank,[9] and an additional $14 million in series C funding led by the same investors.[10]
+
+The company announced a beta version of its cloud services at GigaOm’s Structure LaunchPad in June 2012.[11][12][13] According to IT Business Edge, Redis Enterprise Cloud is especially suitable for “web companies or websites with seasonal or occasional fluctuations in traffic and performance needs."[14] By January 2013 the company had more than 1,000 paying customers including Electronic Arts, Illumina, and Scopely.[15] The Redis Enterprise Cloud and Memcached Cloud products became generally available in February 2013.[16][17] In late 2013, Redis Labs announced it will focus mainly on its cloud-based Redis offering, although it will continue to support the Memcached product.[6]
+
+In September 2013, Amazon Web Services announced Redis capabilities for its ElastiCache product, thereby competing with the company's offering.[18] According to TechCrunch, Redis Labs "has the advantage over AWS when it comes to Redis" because of its scalability and high availability features, which ElastiCache does not provide.[8]
+
+In October 2013, Redis Labs acquired MyRedis, a competing hosted Redis provider.[19][20]
+
+By December 2013, the company had at least 10,000 users,[21] including 1,300 paying customers.[22][6][15] On January 29, 2014, the company changed its name from Garantia Data to Redis Labs.[22]
+
+In September 2014, Redis Labs reported 3,000 paying customers,[23] including Bleacher Report, HotelTonight and Docker.[24]
+
+In early 2015, Redis Labs made available Redis Enterprise Pack[25] (formerly known as Redis Labs Enterprise Cluster (RLEC)), downloadable software for installation of enterprise-grade clusters that acts as a container for managing and running multiple Redis databases.[26]
+
+In early 2016, Redis Labs made available a connector package to Apache Spark.[27][28][29]
+
+In May 2016, the company announced a mechanism for developers to extend Redis,[30] and opened an online marketplace that offers modules certified to work with both open source Redis and Redis Labs’ enterprise products.[31]
+
+Recognition
+August, 2016: Forrester Research positions Redis Labs as a Leader in The Forrester Wave: Big Data NoSQL, Q3 2016 report[32]
+October, 2015: Gartner positions Redis Labs as a Leader in its 2015 Operational Database Management Systems (ODBMS) Magic Quadrant[33]
+July, 2013: According to Cloud Computing Today, Redis Labs is "one of the leading players in the enterprise-grade Redis space"[19]
+April, 2013: Redis Labs is recognized as a Gartner Cool Vendor[34]
+April, 2013: The company is named to the CRN Big Data 100 for Data Management[35]
+December, 2012: Network World selects Redis Labs as one of the 10 most useful cloud databases[36]
+June, 2012: CRN names Redis Labs as one of 10 Hot Tech Startups[37][38]
+

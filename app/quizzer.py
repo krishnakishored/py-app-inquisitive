@@ -116,7 +116,8 @@ def interchange_key_value_in_file(ip,delimiter,op):
                 #word,meaning = line_read.split(' - ') # 
                 line_write = meaning.strip()+delimiter+word.strip()
                 #file_output.write(line_write)
-                print(line_write, file=file_output)#to append a newline  
+                # print(line_write,file=file_output)#to append a newline  
+                print(line_write,file=file_output)#to append a newline  
 
 
 def populate_runtime_dictionary(ip,current_dictionary,num_of_questions,begin_from_question="-1"):
@@ -206,7 +207,7 @@ def report_card_app(current_dictionary):
         
 
 
-def run_quiz_app(num_of_questions,question_bank_file):
+def run_quiz_app(num_of_questions,question_bank_file="../data"):
     current_dictionary = {} #define a dictionary for the session
     #interchange_key_value_in_file("ip.txt"," - ","input_thesaurus.txt")# should called only while populating db
     populate_runtime_dictionary_2(question_bank_file,current_dictionary,num_of_questions)
