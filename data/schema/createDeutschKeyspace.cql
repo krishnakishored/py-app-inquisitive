@@ -5,7 +5,7 @@
 
 CREATE KEYSPACE IF NOT EXISTS "deutsch_fragen" WITH REPLICATION = {
  'class' : 'NetworkTopologyStrategy', 
- 'datacenter1' : 2 // datacenter:datacenter1,  create 2 replicas
+ 'datacenter1' : 1 // datacenter:datacenter1,  create 2 replicas
 };
 
 -- CREATE KEYSPACE IF NOT EXISTS "deutsch_fragen" WITH REPLICATION = {
