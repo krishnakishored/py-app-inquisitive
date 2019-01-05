@@ -38,13 +38,13 @@ populate a list of (key,value) for the quiz
     - based on a select criteria
 
 '''
-# /Users/kishored/coding/python-coding/py-app-inquisitive/data/german_english.txt
 
-def build_word_dict_from_file(filename='./data/german_english.txt',delimiter=':',word_dictionary={}):
+
+def build_word_dict_from_file(filename='./data/german_english.txt',delimiter=':'):
     '''
         reads german:english pairs from files and returns a dictionary of words
     '''
-    # word_dictionary={}
+    word_dictionary={}
     # todo : exception handling
     with open(filename,'r',encoding='utf8') as f_in:
         lines = [line.rstrip().lstrip() for line in f_in] # All lines including the blank ones
@@ -59,9 +59,9 @@ def build_word_dict_from_file(filename='./data/german_english.txt',delimiter=':'
 populate the runtime question list
 '''
 
-def get_wordpairs_for_quiz(num_of_questions=10):
+def get_wordpairs_from_file(num_of_questions=10):
     ''' returns a list of word objects'''
-    full_wordlist = build_word_dict_from_file()
+    
     wordpair_list = []
     # #populate all the pairs
     german_english_pairs = build_word_dict_from_file()
@@ -100,7 +100,7 @@ if __name__ == "__main__":
 
     
     # # print (german=english) pairs
-    runtime_wordlist = get_wordpairs_for_quiz()
+    runtime_wordlist = get_wordpairs_from_file()
     for word in runtime_wordlist:
         print(word.german,"=",word.english)
 

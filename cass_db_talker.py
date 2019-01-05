@@ -9,6 +9,12 @@ from cassandra import ConsistencyLevel
 from cassandra.cluster import Cluster, BatchStatement
 from cassandra.query import SimpleStatement
 
+from cql_builder.builder import QueryBuilder
+from cql_builder.condition import eq,lte,gte
+
+
+
+from word import Word, build_word_dict_from_file
 
 class CassandraConnection:
     def __init__(self):
@@ -25,6 +31,7 @@ class CassandraConnection:
         return self.session
         # return self.cluster
         # self.session = self.cluster.connect(keyspace_name)
+
 
 # cluster = Cluster()
 
@@ -60,58 +67,62 @@ class CassandraConnection:
 # Named place-holders use the %(name)s form:
 
 
+def populate_db_from_file():
+    # create a session with defaults
+    session = get_session_with_defaults()
+
+    # statement_insert_word = session.prepare("INSERT INTO tbl_deutsch (german_word, english_word, partsofspeech) VALUES (?,?,?)")
+    filename='./data/german_english.txt'
+    delimiter=":"
+
+    word_dictionary = build_word_dict_from_file(filename,delimiter)
+    
+    # word_count = len(word_dictionary.keys())
+    # batch = BatchStatement(consistency_level=ConsistencyLevel.QUORUM) # batch too large
+    for ger,eng in word_dictionary.items():
+        # batch.add(statement_insert_word,(ger,eng)) # batch too large
+        statement_insert_word = (QueryBuilder.insert_into("tbl_deutsch").values(german_word=ger, english_word=eng))
+        query, args = statement_insert_word.statement()
+        session.execute(query, args)
+
+    # session.execute(batch) # batch too large
+
+def get_wordpairs_from_db(question_count=10,):
+    ''' returns a list of word objects reading from the database'''
+
+    # create a session with defaults
+    session = get_session_with_defaults()
+    
+    wordpair_list = []
+    
+    statement_select_words = (QueryBuilder.select_from("tbl_deutsch").columns('german_word', 'english_word').limit(question_count))
+
+    query, args = statement_select_words.statement()
+    rows = session.execute(query,args)
+    for row in rows:
+        current_word = Word(row.german_word,row.english_word)
+        # print(row.german_word,":",row.english_word)
+        # current_word.german_word = row.german_word
+        # current_word.english_word = row.english_word
+        wordpair_list.append(current_word)
+    return wordpair_list
 
 
-#
-# Asynchronous Queries
-#
-
-
-
-
-
+def get_session_with_defaults():
+    cassConnection = CassandraConnection()
+    #initialize
+    ip_address = ["127.0.0.1"]
+    cassConnection.cluster = Cluster(ip_address)
+    cassConnection.keyspace = 'inquisitive'
+    cassConnection.auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra') #security flaw - read from environment
+    return cassConnection.create_session()
 
 
 if __name__ == "__main__":
-    myCassConnection = CassandraConnection()
-    #initialize
-    ip_address = ["127.0.0.1"]
-    myCassConnection.cluster = Cluster(ip_address)
-    myCassConnection.session
-    myCassConnection.keyspace = 'inquisitive'
-    myCassConnection.auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra') #security flaw - read from environment
-    session = myCassConnection.create_session()
 
-    session.execute(
-    """
-    INSERT INTO tbl_deutsch (german_word, english_word, partsofspeech)
-    VALUES (%s, %s, %s) 
-    """,
-    ("sein", "to be", "verb")
-    )
-
-    session.execute(
-    """
-    INSERT INTO tbl_deutsch (german_word, english_word, partsofspeech)
-    VALUES (%(german)s, %(english)s, %(partsofspeech)s)
-    """,
-    {'german_word': "bekommen", 'english_word': "to receive", 'partsofspeech': "verb"}
-    )
-
-
-    # SELECT 
-    rows = session.execute('SELECT german_word,english_word FROM tbl_deutsch')
-    for row in rows:
-        # print(row.german, row.english)
-        print(row[0], row[1])
-
-
-    session.execute(
-    """
-    INSERT INTO tbl_deutsch (german_word, english_word, partsofspeech)
-    VALUES (%s, %s, %s)
-    """,
-    ("arbeiten", 'to work', "verb")
-    )
-
-
+    # read these from a config or an environment
+    
+    # populate_db_from_file(session)
+    runtime_wordlist = get_wordpairs_from_db(10)
+    for word in runtime_wordlist:
+        print(word.german,"=",word.english)

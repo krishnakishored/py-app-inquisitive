@@ -14,13 +14,17 @@ Game runtime
 
 '''
 
-from word import get_wordpairs_for_quiz
+from word import get_wordpairs_from_file
+from cass_db_talker import CassandraConnection, get_wordpairs_from_db
 
 # get the runtime question_list
 
 # interactive mode
 def interactive_console_app(num_of_questions=10):
-    runtime_wordlist = get_wordpairs_for_quiz()
+    # runtime_wordlist = get_wordpairs_from_file(num_of_questions)
+
+    runtime_wordlist = get_wordpairs_from_db(num_of_questions)
+
     question_number = 0
     answers = {}
 
@@ -54,7 +58,7 @@ def report_card_app(current_dictionary):
 ''' Needs improvement w.r.t report card'''
 def run_quiz_app(num_of_questions = 10):
 
-    runtime_wordlist = get_wordpairs_for_quiz()
+    runtime_wordlist = get_wordpairs_from_file()
     question_number = 0    
     current_dictionary={}
     answers = {}
@@ -91,11 +95,8 @@ def run_quiz_app(num_of_questions = 10):
 
 
 
-# push the result data to DB for analysis
-
-
-
+# push the result data to DB for analysis - ToDo
 if __name__ == "__main__":
-    # interactive_console_app()
-    run_quiz_app()
+    interactive_console_app()
+    # run_quiz_app()
 
