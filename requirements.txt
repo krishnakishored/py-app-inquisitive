@@ -1,2 +1,5 @@
 cassandra-driver==3.16.0
+cql==1.4.0
+cql-builder==0.2.1
 six==1.12.0
+thrift==0.11.0

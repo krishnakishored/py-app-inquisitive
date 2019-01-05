@@ -42,6 +42,40 @@ def interactive_console_app(num_of_questions=10):
 
 # conduct the game as a quiz & evaluate
 
+
+
+''' ToDo: Needs improvement w.r.t report card & two way quiz'''
+def run_quiz_app(num_of_questions = 10):
+
+    # runtime_wordlist = get_wordpairs_from_file(num_of_questions)
+    runtime_wordlist = get_wordpairs_from_db(num_of_questions)
+
+    question_number = 0    
+    current_dictionary={}
+    results = {}
+    rights = []
+    wrongs = []
+    print("Enter the word which matches the following definition")
+
+    for word in runtime_wordlist:
+        question_number = question_number+1
+        
+        current_dictionary[word.german]=word.english
+        print("{0}: {1}".format(question_number,word.german),end=" ")
+        answer = str(input(" = "))
+        # compare with nearest matches
+        if(word.english.strip() == answer.strip()):
+            rights.append[word.german]
+        else:
+            wrongs.append[word.german]
+            print("the right answer:{0}".format(word.english)) 
+    
+    results[1] = rights
+    results[0] = wrongs
+    # report_card_app(results)
+    print(results[0][0])
+
+
 def report_card_app(current_dictionary):
     number_of_correct_answers = 0 
     print("\n>>>>>>>>Correct answers<<<<<<<<<<:")
@@ -55,28 +89,7 @@ def report_card_app(current_dictionary):
     
         
 
-''' Needs improvement w.r.t report card'''
-def run_quiz_app(num_of_questions = 10):
-
-    runtime_wordlist = get_wordpairs_from_file()
-    question_number = 0    
-    current_dictionary={}
-    answers = {}
-    print("Enter the word which matches the following definition")
-
-    for word in runtime_wordlist:
-        question_number = question_number+1
-        
-        current_dictionary[word.german]=word.english
-        print("{0}: {1}".format(question_number,word.german),end=" ")
-        answer = str(input(" = "))
-        # compare with nearest matches
-        if(word.english.strip() == answer.strip()):
-            answers[question_number]=1
-        else:
-            answers[question_number]=0
-            print("the right answer:{0}".format(word.english))  
-    report_card_app(current_dictionary)
+    
 
     # for key,value in current_dictionary.items():
     #     question_number = question_number+1
@@ -97,6 +110,6 @@ def run_quiz_app(num_of_questions = 10):
 
 # push the result data to DB for analysis - ToDo
 if __name__ == "__main__":
-    interactive_console_app()
-    # run_quiz_app()
+    # interactive_console_app()
+    run_quiz_app()
 

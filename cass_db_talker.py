@@ -33,41 +33,19 @@ class CassandraConnection:
         # self.session = self.cluster.connect(keyspace_name)
 
 
-# cluster = Cluster()
-
-# cluster = Cluster(['192.168.0.1', '192.168.0.2'])  # You can also specify a list of IP addresses for nodes in your cluster:
-# The set of IP addresses we pass to the Cluster is simply an initial set of contact points. 
-# After the driver connects to one of these nodes it will automatically discover the rest of the nodes in the cluster and connect to them,  so you don’t need to list every node in your cluster.
-
-# The connect() method takes an optional keyspace argument which sets the default keyspace for all queries made through that Session:
-# session = cluster.connect('worte_liste') 
-
-# session = cluster.connect('inquisitive') # keyspace
-
-# You can always change a Session’s keyspace using set_keyspace() or by executing a USE query:
-# session.execute("CREATE KEYSPACE worte_liste WITH replication = { 'class': 'SimpleStrategy', 'replication_factor': '1' };") 
-# session.set_keyspace('worte_liste')
-# session.execute('USE users') # or you can do this instead
-
-#
-# Executing Queries
-# 
-
-
-
-
-# Passing Parameters to CQL Queries
-
-# When executing non-prepared statements, the driver supports two forms of parameter place-holders: positional and named.
-
-# INSERT - Positional parameters are used with a %s placeholder. 
-# Note that you should use %s for all types of arguments, not just strings. 
-#  you must always use a sequence for the second argument - [], (), even if you are only passing in a single variable 
-
-# Named place-holders use the %(name)s form:
-
+def get_session_with_defaults():
+    cassConnection = CassandraConnection()
+    #initialize
+    ip_address = ["127.0.0.1"] # You can also specify a list of IP addresses for nodes in your cluster:
+    cassConnection.cluster = Cluster(ip_address)
+    cassConnection.keyspace = 'inquisitive'
+    cassConnection.auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra') #security flaw - read from environment
+    return cassConnection.create_session()
 
 def populate_db_from_file():
+    '''
+    read from a text file and insert into to the database
+    '''
     # create a session with defaults
     session = get_session_with_defaults()
 
@@ -108,20 +86,13 @@ def get_wordpairs_from_db(question_count=10,):
     return wordpair_list
 
 
-def get_session_with_defaults():
-    cassConnection = CassandraConnection()
-    #initialize
-    ip_address = ["127.0.0.1"]
-    cassConnection.cluster = Cluster(ip_address)
-    cassConnection.keyspace = 'inquisitive'
-    cassConnection.auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra') #security flaw - read from environment
-    return cassConnection.create_session()
+# update the fields
+
+# delete rows
+
 
 
 if __name__ == "__main__":
-
-    # read these from a config or an environment
-    
     # populate_db_from_file(session)
     runtime_wordlist = get_wordpairs_from_db(10)
     for word in runtime_wordlist:
