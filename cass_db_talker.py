@@ -11,6 +11,8 @@ from cassandra.query import SimpleStatement
 
 from cql_builder.builder import QueryBuilder
 from cql_builder.condition import eq,lte,gte
+from cassandra import ReadTimeout
+
 
 
 
@@ -59,7 +61,7 @@ def populate_db_from_file():
     # batch = BatchStatement(consistency_level=ConsistencyLevel.QUORUM) # batch too large
     for ger,eng in word_dictionary.items():
         # batch.add(statement_insert_word,(ger,eng)) # batch too large
-        statement_insert_word = (QueryBuilder.insert_into("tbl_deutsch").values(german_word=ger, english_word=eng))
+        statement_insert_word = (QueryBuilder.insert_into("tbl_deutsch").values(german_word=ger, english_word=eng, frequency=0,toughness=0))
         query, args = statement_insert_word.statement()
         session.execute(query, args)
 
@@ -72,7 +74,7 @@ def get_wordpairs_from_db(question_count=10,):
     session = get_session_with_defaults()
     
     wordpair_list = []
-    
+    # where(gte('frequency',1)) message="Cannot execute this query as it might involve data filtering and thus may have unpredictable performance. If you want to execute this query despite the performance unpredictability, use ALLOW FILTERING"
     statement_select_words = (QueryBuilder.select_from("tbl_deutsch").columns('german_word', 'english_word').limit(question_count))
 
     query, args = statement_select_words.statement()
@@ -87,13 +89,47 @@ def get_wordpairs_from_db(question_count=10,):
 
 
 # update the fields
+def update_word_toughness_freq(results):
+    '''
+    takes a map of words, word:-1 or +1 for incorrect
+     set frequency = frequency + 1 
+     set toughness = toughness +1 or -1
+    '''
+    # create a session with defaults
+    session = get_session_with_defaults()
 
+    
+    for word,value in results.items():
+        # get freq & toughness    
+        select_query = "SELECT frequency,toughness FROM tbl_deutsch WHERE german_word=%s"
+        future = session.execute_async(select_query, [word])
+        try:
+            rows = future.result()
+            row = rows.one()
+            # print (user.frequency, user.toughness)
+            word_frequency,word_toughness =  row.frequency,row.toughness
+            # print(word_frequency,": ",word_toughness)
+        except ReadTimeout:
+            log.exception("Query timed out:")
+
+        # print(word_frequency+1,word_toughness+value,word)
+
+
+        update_query = "UPDATE tbl_deutsch SET frequency=%s,toughness=%s WHERE german_word=%s"
+        future = session.execute_async(update_query, [word_frequency+1,word_toughness+value,word])
+        try:
+            rows = future.result()
+        except ReadTimeout:
+            log.exception("Query timed out:")
 # delete rows
 
-
+# https://github.com/jjengo/cql-builder
 
 if __name__ == "__main__":
-    # populate_db_from_file(session)
-    runtime_wordlist = get_wordpairs_from_db(10)
-    for word in runtime_wordlist:
-        print(word.german,"=",word.english)
+    # populate_db_from_file()
+    # runtime_wordlist = get_wordpairs_from_db(10)
+    # for word in runtime_wordlist:
+    #     print(word.german,"=",word.english)
+
+    results={'Goldstaub':1}
+    update_word_toughness_freq(results)

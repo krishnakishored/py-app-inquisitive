@@ -15,7 +15,7 @@ Game runtime
 '''
 
 from word import get_wordpairs_from_file
-from cass_db_talker import CassandraConnection, get_wordpairs_from_db
+from cass_db_talker import CassandraConnection, get_wordpairs_from_db, update_word_toughness_freq
 
 # get the runtime question_list
 
@@ -53,8 +53,7 @@ def run_quiz_app(num_of_questions = 10):
     question_number = 0    
     current_dictionary={}
     results = {}
-    rights = []
-    wrongs = []
+
     print("Enter the word which matches the following definition")
 
     for word in runtime_wordlist:
@@ -63,33 +62,26 @@ def run_quiz_app(num_of_questions = 10):
         current_dictionary[word.german]=word.english
         print("{0}: {1}".format(question_number,word.german),end=" ")
         answer = str(input(" = "))
-        # compare with nearest matches
+        #ToDo: write a method to compare with nearest matches
         if(word.english.strip() == answer.strip()):
-            rights.append[word.german]
+            # results["rights"].append(word.german)
+            results[word.german]= 1
         else:
-            wrongs.append[word.german]
-            print("the right answer:{0}".format(word.english)) 
+            results[word.german]= -1
+            print("correct answer: {0}".format(word.english)) 
     
-    results[1] = rights
-    results[0] = wrongs
-    # report_card_app(results)
-    print(results[0][0])
+    # results[1] = rights
+    # results[0] = wrongs
+    report_card_app(results)
 
+def report_card_app(results):
+    '''
+    displays results & writes back to db for analytics
+    '''
 
-def report_card_app(current_dictionary):
-    number_of_correct_answers = 0 
-    print("\n>>>>>>>>Correct answers<<<<<<<<<<:")
-    for key,value in current_dictionary.items():
-        if value[1]==1:
-            print(key," = ",value[0].strip(),"| 1")
-            number_of_correct_answers+=1
-        else:
-            print(key," = ",value[0].strip(),"| 0")
-    print("Result:{0}/{1}".format(number_of_correct_answers,len(current_dictionary)))
-    
-        
-
-    
+    wrongs = [i for i in results.values() if i==-1]
+    print("wrong answers:{0}/{1}".format(len(wrongs),len(results)))
+    update_word_toughness_freq(results)
 
     # for key,value in current_dictionary.items():
     #     question_number = question_number+1
@@ -111,5 +103,5 @@ def report_card_app(current_dictionary):
 # push the result data to DB for analysis - ToDo
 if __name__ == "__main__":
     # interactive_console_app()
-    run_quiz_app()
+    run_quiz_app(5)
 

@@ -21,17 +21,29 @@ CREATE TABLE tbl_deutsch
     "partsofspeech" ASCII,
     "plural" VARCHAR,
     "article" ASCII,
-    "toughness" DECIMAL,
-    "frequency" DECIMAL,
     "synonyms" VARCHAR,
     "antonyms" VARCHAR,
+    "frequency" DECIMAL,     
+    "toughness" DECIMAL,
 	PRIMARY KEY (("german_word"))
 );
-
-    -- "counter" COUNTER, //message="Cannot mix counter and non counter columns in the same table"
-
-
+    
 CREATE INDEX ON "tbl_deutsch" ("english_word");
 CREATE INDEX ON "tbl_deutsch" ("partsofspeech");
-CREATE INDEX ON "tbl_deutsch" ("toughness");
 CREATE INDEX ON "tbl_deutsch" ("frequency");
+CREATE INDEX ON "tbl_deutsch" ("toughness");
+
+
+-- -- "counter" COUNTER, //message="Cannot mix counter and non counter columns in the same table"
+-- CREATE TABLE tbl_analytics
+-- (
+--     "german_word" VARCHAR,
+--     "frequency" COUNTER,
+--     "toughness" COUNTER,
+   
+-- 	PRIMARY KEY (("german_word"))
+-- );
+-- -- "Secondary indexes are not supported on counter tables"
+
+-- CREATE INDEX ON "tbl_analytics" ("toughness"); 
+-- CREATE INDEX ON "tbl_analytics" ("frequency");
