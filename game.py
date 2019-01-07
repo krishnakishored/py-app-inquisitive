@@ -96,10 +96,6 @@ def report_card_app(results):
 
 
 
-
-
-
-
 # push the result data to DB for analysis - ToDo
 if __name__ == "__main__":
     # interactive_console_app()

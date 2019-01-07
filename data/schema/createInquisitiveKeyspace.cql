@@ -16,6 +16,7 @@ use "inquisitive";
 
 CREATE TABLE tbl_deutsch
 (
+    "id" uuid,
     "german_word" VARCHAR,
     "english_word" VARCHAR,
     "partsofspeech" ASCII,
@@ -25,9 +26,9 @@ CREATE TABLE tbl_deutsch
     "antonyms" VARCHAR,
     "frequency" DECIMAL,     
     "toughness" DECIMAL,
-	PRIMARY KEY (("german_word"))
+	PRIMARY KEY (("id"))
 );
-    
+CREATE INDEX ON "tbl_deutsch" ("german_word");    
 CREATE INDEX ON "tbl_deutsch" ("english_word");
 CREATE INDEX ON "tbl_deutsch" ("partsofspeech");
 CREATE INDEX ON "tbl_deutsch" ("frequency");
