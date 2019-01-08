@@ -19,59 +19,91 @@ from cass_db_talker import CassandraConnection, get_wordpairs_from_db, update_wo
 
 # get the runtime question_list
 
-# interactive mode
-def interactive_console_app(num_of_questions=10):
+# interactive mode - choose "german" or "english"
+def interactive_console_app(num_of_questions=10,guess="german"):
     # runtime_wordlist = get_wordpairs_from_file(num_of_questions)
 
     runtime_wordlist = get_wordpairs_from_db(num_of_questions)
 
     question_number = 0
-    answers = {}
-
-    for word in runtime_wordlist:
-        question_number = question_number+1
-        print("{0}: {1}".format(question_number,word.german),end=" ")
-        answer = str(input(" = "))
-        # compare with nearest matches
-        if(word.english.strip() == answer.strip()):
-            answers[question_number]=1
-        else:
-            answers[question_number]=0
-            print("the right answer:{0}".format(word.english))  
+    results = {}
+    if(guess=="german"):
+        for word in runtime_wordlist:
+            question_number = question_number+1    
+            print("{0}: {1}".format(question_number,word.english),end=" ")
+            answer = str(input(" = "))
+            # compare with nearest matches
+            if(word.german.strip() == answer.strip()):
+                results[word.german]=1
+            elif(answer.strip()==""):
+                results[word.german] = 0
+                print("pass: {0}".format(word.german)) 
+            else:
+                results[word.german]=-1
+                print("correct ans:{0}".format(word.german))  
+    else:
+        for word in runtime_wordlist:
+            question_number = question_number+1    
+            print("{0}: {1}".format(question_number,word.german),end=" ")
+            answer = str(input(" = "))
+            if(word.english.strip() == answer.strip()):
+                results[word.german]= 1
+            elif(answer.strip()==""):
+                results[word.german] = 0
+                print("pass: {0}".format(word.english)) 
+            else:
+                results[word.german]= -1
+                print("correct ans:{0}".format(word.english))  
+    report_card_app(results)
 
 
 # conduct the game as a quiz & evaluate
 
 
-
 ''' ToDo: Needs improvement w.r.t report card & two way quiz'''
-def run_quiz_app(num_of_questions = 10):
+def run_quiz_app(num_of_questions = 10, guess="german"):
 
     # runtime_wordlist = get_wordpairs_from_file(num_of_questions)
     runtime_wordlist = get_wordpairs_from_db(num_of_questions)
 
     question_number = 0    
-    current_dictionary={}
+    # current_dictionary={}
     results = {}
+    if(guess=="german"):
+        for word in runtime_wordlist:
+            question_number = question_number+1
+            
+            print("{0}: {1}".format(question_number,word.english),end=" ")
 
-    print("Enter the word which matches the following definition")
+            answer = str(input(" = "))
+            #ToDo: write a method to compare with nearest matches
+            if(word.german.strip() == answer.strip()):
+                # results["rights"].append(word.german)
+                results[word.german]= 1
+            elif(answer.strip()==""):
+                results[word.german] = 0
+                print("pass: {0}".format(word.german)) 
+            else:
+                results[word.german]= -1
+                print("correct ans: {0}".format(word.german)) 
+    else:
+        for word in runtime_wordlist:
+            question_number = question_number+1
+            
+            print("{0}: {1}".format(question_number,word.german),end=" ")
 
-    for word in runtime_wordlist:
-        question_number = question_number+1
-        
-        current_dictionary[word.german]=word.english
-        print("{0}: {1}".format(question_number,word.german),end=" ")
-        answer = str(input(" = "))
-        #ToDo: write a method to compare with nearest matches
-        if(word.english.strip() == answer.strip()):
-            # results["rights"].append(word.german)
-            results[word.german]= 1
-        else:
-            results[word.german]= -1
-            print("correct answer: {0}".format(word.english)) 
-    
-    # results[1] = rights
-    # results[0] = wrongs
+            answer = str(input(" = "))
+            #ToDo: write a method to compare with nearest matches
+            if(word.english.strip() == answer.strip()):
+                # results["rights"].append(word.german)
+                results[word.german]= 1
+            elif(answer.strip()==""):
+                results[word.german] = 0
+                print("pass: {0}".format(word.english)) 
+            else:
+                results[word.german]= -1
+                print("correct ans: {0}".format(word.english)) 
+
     report_card_app(results)
 
 def report_card_app(results):
@@ -83,21 +115,8 @@ def report_card_app(results):
     print("wrong answers:{0}/{1}".format(len(wrongs),len(results)))
     update_word_toughness_freq(results)
 
-    # for key,value in current_dictionary.items():
-    #     question_number = question_number+1
-    #     print("{0}: {1}".format(question_number,key),end=" ")
-    #     answer = str(input(" ? "))
-    #     if(value[0].strip() == answer.strip()):
-    #         value[1] = 1
-    #         #print(key,value,"correct")
-    #     # else:
-    #        #print("false, the right answer:{0}".format(value[0].strip()))    
-    # report_card_app(current_dictionary)
-
-
-
 # push the result data to DB for analysis - ToDo
 if __name__ == "__main__":
-    # interactive_console_app()
-    run_quiz_app(5)
+    # interactive_console_app(3,"german")
+    run_quiz_app(5,"english")
 

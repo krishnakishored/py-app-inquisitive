@@ -77,7 +77,7 @@ def get_wordpairs_from_db(question_count=10,):
     # where(gte('frequency',1)) message="Cannot execute this query as it might involve data filtering and thus may have unpredictable performance. If you want to execute this query despite the performance unpredictability, use ALLOW FILTERING"
     # statement_select_words = (QueryBuilder.select_from("tbl_deutsch").columns('german_word', 'english_word').limit(question_count))
 
-    random_uniqueId = uuid.uuid4()
+    random_uniqueId = uuid.uuid4() # Random
     statement_select_words = "SELECT german_word,english_word FROM tbl_deutsch WHERE id<%s LIMIT %s ALLOW FILTERING"
     future = session.execute_async(statement_select_words, [random_uniqueId,question_count])
 
@@ -133,9 +133,9 @@ def update_word_toughness_freq(results):
 if __name__ == "__main__":
     # populate_db_from_file()
     
-    # runtime_wordlist = get_wordpairs_from_db(10)
-    # for word in runtime_wordlist:
-    #     print(word.german,"=",word.english)
+    runtime_wordlist = get_wordpairs_from_db(10)
+    for word in runtime_wordlist:
+        print(word.german,"=",word.english)
     
-    results={'Goldstaub':1}
-    update_word_toughness_freq(results)
+    # results={'Goldstaub':1}
+    # update_word_toughness_freq(results)
