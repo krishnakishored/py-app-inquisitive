@@ -17,7 +17,13 @@ Game runtime
 from word import get_wordpairs_from_file
 from cass_db_talker import CassandraConnection, get_wordpairs_from_db, update_word_toughness_freq
 
-# get the runtime question_list
+
+
+
+#ToDo: import 'difflib' to accept close matches
+def compare_text(first,second):
+    ''' works for unicode chars too'''
+    return first.casefold().strip() == second.casefold().strip()
 
 # interactive mode - choose "german" or "english"
 def interactive_console_app(num_of_questions=10,guess="german"):
@@ -27,15 +33,15 @@ def interactive_console_app(num_of_questions=10,guess="german"):
 
     question_number = 0
     results = {}
-    if(guess=="german"):
+    if(compare_text(guess,"german")):
         for word in runtime_wordlist:
             question_number = question_number+1    
             print("{0}: {1}".format(question_number,word.english),end=" ")
             answer = str(input(" = "))
             # compare with nearest matches
-            if(word.german.strip() == answer.strip()):
+            if(compare_text(word.german, answer)):
                 results[word.german]=1
-            elif(answer.strip()==""):
+            elif (compare_text(answer, "")):
                 results[word.german] = 0
                 print("pass: {0}".format(word.german)) 
             else:
@@ -46,9 +52,9 @@ def interactive_console_app(num_of_questions=10,guess="german"):
             question_number = question_number+1    
             print("{0}: {1}".format(question_number,word.german),end=" ")
             answer = str(input(" = "))
-            if(word.english.strip() == answer.strip()):
+            if (compare_text(word.english,answer)):
                 results[word.german]= 1
-            elif(answer.strip()==""):
+            elif compare_text(answer,""):
                 results[word.german] = 0
                 print("pass: {0}".format(word.english)) 
             else:
@@ -69,7 +75,7 @@ def run_quiz_app(num_of_questions = 10, guess="german"):
     question_number = 0    
     # current_dictionary={}
     results = {}
-    if(guess=="german"):
+    if(compare_text(guess,"german")):
         for word in runtime_wordlist:
             question_number = question_number+1
             
@@ -77,10 +83,10 @@ def run_quiz_app(num_of_questions = 10, guess="german"):
 
             answer = str(input(" = "))
             #ToDo: write a method to compare with nearest matches
-            if(word.german.strip() == answer.strip()):
+            if compare_text(word.german, answer):
                 # results["rights"].append(word.german)
                 results[word.german]= 1
-            elif(answer.strip()==""):
+            elif compare_text(answer,""):
                 results[word.german] = 0
                 print("pass: {0}".format(word.german)) 
             else:
@@ -94,10 +100,10 @@ def run_quiz_app(num_of_questions = 10, guess="german"):
 
             answer = str(input(" = "))
             #ToDo: write a method to compare with nearest matches
-            if(word.english.strip() == answer.strip()):
+            if compare_text(word.english, answer):
                 # results["rights"].append(word.german)
                 results[word.german]= 1
-            elif(answer.strip()==""):
+            elif compare_text(answer,""):
                 results[word.german] = 0
                 print("pass: {0}".format(word.english)) 
             else:
@@ -115,8 +121,8 @@ def report_card_app(results):
     print("wrong answers:{0}/{1}".format(len(wrongs),len(results)))
     update_word_toughness_freq(results)
 
-# push the result data to DB for analysis - ToDo
-if __name__ == "__main__":
-    # interactive_console_app(3,"german")
-    run_quiz_app(5,"english")
 
+if __name__ == "__main__":
+    interactive_console_app(3,"english")
+    # run_quiz_app(3,"german")
+    # print(compare_text("baße ","Basse"))
