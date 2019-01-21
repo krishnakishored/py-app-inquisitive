@@ -35,6 +35,31 @@ CREATE INDEX ON "tbl_deutsch" ("frequency");
 CREATE INDEX ON "tbl_deutsch" ("toughness");
 
 
+-- Tables based on parts of speech
+CREATE TABLE tbl_conjunction
+(
+    "id" uuid,
+    "german_word" VARCHAR,
+    "english_word" VARCHAR,
+    "partsofspeech" ASCII,
+    PRIMARY KEY (("id"))
+);  
+
+CREATE INDEX ON "tbl_conjunction" ("german_word");    
+CREATE INDEX ON "tbl_conjunction" ("english_word");
+CREATE INDEX ON "tbl_conjunction" ("partsofspeech");
+
+
+
+-- Tables based on sentences & phrases
+
+-- Populate the main table periodically - ToDo
+
+
+
+
+
+
 -- -- "counter" COUNTER, //message="Cannot mix counter and non counter columns in the same table"
 -- CREATE TABLE tbl_analytics
 -- (

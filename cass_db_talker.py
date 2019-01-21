@@ -43,7 +43,7 @@ def get_session_with_defaults():
     cassConnection.auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra') #security flaw - read from environment
     return cassConnection.create_session()
 
-def populate_db_from_file():
+def populate_db_from_file(filename='./data/german_english.txt',delimiter=':'):
     '''
     read from a text file and insert into to the database
     '''
@@ -51,8 +51,8 @@ def populate_db_from_file():
     session = get_session_with_defaults()
 
     # statement_insert_word = session.prepare("INSERT INTO tbl_deutsch (german_word, english_word, partsofspeech) VALUES (?,?,?)")
-    filename='./data/german_english.txt'
-    delimiter=":"
+    # filename='./data/german_english.txt'
+    # delimiter=":"
 
     word_dictionary = build_word_dict_from_file(filename,delimiter)
     
@@ -138,7 +138,10 @@ def update_word_toughness_freq(results):
 import random, time
 
 if __name__ == "__main__":
-    # populate_db_from_file()
+
+    filename='./data/german_english.txt'
+    delimiter=":"
+    populate_db_from_file(filename,delimiter)
     
     runtime_wordlist = get_wordpairs_from_db(5)
     for word in runtime_wordlist:
