@@ -13,11 +13,14 @@ Game runtime
         - meaning
 
 '''
+import sys
+sys.path.append(sys.path[0] + "/..")  # To Fix: ValueError Attempted Relative Import Toplevel Package
 
-from word import get_wordpairs_from_file
+
+from utils.word import get_wordpairs_from_file
 from db_handlers.cassandra_db_handler import CassandraConnection, get_wordpairs_from_db, update_word_toughness_freq
 
-
+from db_handlers.sqlite_db_handler import 
 
 
 #ToDo: import 'difflib' to accept close matches

@@ -15,7 +15,10 @@ from cassandra import ReadTimeout
 
 import uuid
 
-from word import Word, build_word_dict_from_file
+import sys
+sys.path.append(sys.path[0] + "/..")  # To Fix: ValueError Attempted Relative Import Toplevel Package
+
+from utils.word import Word, build_word_dict_from_file
 
 class CassandraConnection:
     def __init__(self):
