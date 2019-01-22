@@ -15,7 +15,7 @@ Game runtime
 '''
 
 from word import get_wordpairs_from_file
-from cass_db_talker import CassandraConnection, get_wordpairs_from_db, update_word_toughness_freq
+from db_handlers.cassandra_db_handler import CassandraConnection, get_wordpairs_from_db, update_word_toughness_freq
 
 
 

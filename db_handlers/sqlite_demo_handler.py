@@ -34,7 +34,7 @@ def create_table(conn, create_table_sql):
 
 
 def main_create_tables():
-    database = './demo_crud.db'
+    database = './data/sqlite3/demo_crud.db'
     sql_create_projects_table = """ CREATE TABLE IF NOT EXISTS projects (
                                         id integer PRIMARY KEY,
                                         name text NOT NULL,
@@ -92,7 +92,7 @@ def create_task(conn, task):
     return cur.lastrowid
 
 def main_insert_tables():
-    database = './demo_crud.db'
+    database = './data/sqlite3/demo_crud.db'
     # create a database connection
     conn = create_connection(database)
     with conn:
@@ -125,7 +125,7 @@ def update_task(conn, task):
     cur.execute(sql, task)
 
 def main_update_task():
-    database = './demo_crud.db'
+    database = './data/sqlite3/demo_crud.db'
  
     # create a database connection
     conn = create_connection(database)
@@ -155,7 +155,7 @@ def delete_all_tasks(conn):
     cur.execute(sql)
 
 def main_delete_tasks():
-    database = './demo_crud.db'
+    database = './data/sqlite3/demo_crud.db'
  
     # create a database connection
     conn = create_connection(database)
@@ -195,7 +195,7 @@ def select_task_by_priority(conn, priority):
  
 
 def main_select_tasks():
-    database = './demo_crud.db'
+    database = './data/sqlite3/demo_crud.db'
  
     # create a database connection
     conn = create_connection(database)
@@ -207,11 +207,11 @@ def main_select_tasks():
         select_all_tasks(conn)
 
 if __name__ == '__main__':
-    # database = './demo_crud.db'
+    # database = './data/sqlite3/demo_crud.db'
     # create_connection(database)
 
     # main_create_tables()
     # main_insert_tables()
-    main_update_task()
+    # main_update_task()
     # main_delete_tasks()
     main_select_tasks()
