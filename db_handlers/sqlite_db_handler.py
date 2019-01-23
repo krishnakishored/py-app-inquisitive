@@ -10,10 +10,10 @@ sys.path.append(sys.path[0] + "/..")  # To Fix: ValueError Attempted Relative Im
 
 from utils.word import Word, build_word_dict_from_file
  
-def create_connection(db_file):
+def create_connection(database):
     """ create a database connection to a SQLite database """
     try:
-        conn = sqlite3.connect(db_file)
+        conn = sqlite3.connect(database)
         # conn = sqlite3.connect(':memory:') # it will create a new database that resides in the memory (RAM) instead of a database file on disk.
         # print(sqlite3.version)
         return conn
@@ -84,16 +84,25 @@ def insert_row_subtable(database, table, values):
         cur.execute(sql_insert_row,values)
         return cur.lastrowid
 
+def insert_row_mastertable(database, table, values):
+    conn = create_connection(database)
+    with conn:
+        sql_insert_row =  """ INSERT INTO {0} (german_word,english_word,partsofspeech,frequency,difficulty) VALUES(?,?,?,0,0) """.format(table)
+        cur = conn.cursor()
+        cur.execute(sql_insert_row,values)
+        return cur.lastrowid
+
 def populate_db_from_file(database='./data/sqlite3/inquisitive.db',table='conjunction', filename='./data/german_english.txt',delimiter=':'):
     '''
-    ToDo: populate the tbl_deutsch w.r.t any insertion into the partsofspeech tables as auto-sync
+    ToDo: populate the master w.r.t any insertion into the partsofspeech tables as auto-sync
     read from a text file and insert into to the database
     '''
 
     word_dictionary = build_word_dict_from_file(filename,delimiter)
     for ger,eng in word_dictionary.items():
-        value_tuple  = (ger,eng,'conjunction')
-        insert_row_subtable(database,table, value_tuple)
+        value_tuple  = (ger,eng,table)
+        insert_row_subtable(database,table,value_tuple)
+        insert_row_mastertable(database,'master',value_tuple)
 
 def get_wordpairs_from_table(database= './data/sqlite3/inquisitive.db', table='conjunction',question_count=10):
     ''' returns a list of word objects reading from the database'''  
@@ -104,17 +113,25 @@ def get_wordpairs_from_table(database= './data/sqlite3/inquisitive.db', table='c
         wordpair_list.append(current_word)
     return wordpair_list
 
+def update_word_difficulty_freq(results):
+    '''
+    takes a map of words, word:-1 or +1 for incorrect
+     set frequency = frequency + 1 
+     set difficulty = difficulty +1 or -1
+    '''
+    pass
+
 if __name__ == '__main__':
     database = './data/sqlite3/inquisitive.db'
     table= 'conjunction'
 
-    sql_create_tbl_deutsch = """ CREATE TABLE IF NOT EXISTS tbl_deutsch (
+    sql_create_tbl_master = """ CREATE TABLE IF NOT EXISTS master (
                                         id integer PRIMARY KEY,
                                         german_word text UNIQUE NOT NULL,
                                         english_word text NOT NULL,
                                         partsofspeech text,
                                         frequency integer,
-                                        toughness integer
+                                        difficulty integer
                                     ); """
     
     sql_create_tbl_conjunction = """ CREATE TABLE IF NOT EXISTS conjunction (
@@ -125,7 +142,7 @@ if __name__ == '__main__':
                                     ); """
 
     # create_table(database,sql_create_tbl_conjunction)
-    # create_table(database,sql_create_tbl_deutsch) # ToDo - auto insert with insertion in any of the partsofspeech tables
+    # create_table(database,sql_create_tbl_master) # ToDo - auto insert with insertion in any of the partsofspeech tables
     
     # value_tuple = ('bevor','before','conjunction')
     # insert_row_subtable(database,table, value_tuple)
@@ -133,7 +150,7 @@ if __name__ == '__main__':
 
     # populate_db_from_file(database,table,filename='./data/conjunction.txt',delimiter=':')
     # select_all_rows(database,table)
-    select_random_questions(database,table,3)
+    # select_random_questions(database,table,3)
 
     runtime_wordlist = get_wordpairs_from_table(database,table,5)
     for word in runtime_wordlist:

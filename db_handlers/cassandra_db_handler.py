@@ -64,7 +64,7 @@ def populate_db_from_file(filename='./data/german_english.txt',delimiter=':'):
     for ger,eng in word_dictionary.items():
         # batch.add(statement_insert_word,(ger,eng)) # batch too large
         uniqueId = uuid.uuid5(uuid.NAMESPACE_DNS, ger)
-        statement_insert_word = (QueryBuilder.insert_into("tbl_deutsch").values(id=uniqueId, german_word=ger, english_word=eng, frequency=0,toughness=0))
+        statement_insert_word = (QueryBuilder.insert_into("tbl_deutsch").values(id=uniqueId, german_word=ger, english_word=eng, frequency=0,difficulty=0))
         query, args = statement_insert_word.statement()
         session.execute(query, args)
 
@@ -101,35 +101,35 @@ def get_wordpairs_from_table(question_count=10,):
 
 
 # update the fields
-def update_word_toughness_freq(results):
+def update_word_difficulty_freq(results):
     '''
     takes a map of words, word:-1 or +1 for incorrect
      set frequency = frequency + 1 
-     set toughness = toughness +1 or -1
+     set difficulty = difficulty +1 or -1
     '''
     # create a session with defaults
     session = get_session_with_defaults()
 
     
     for word,value in results.items():
-        # get freq & toughness    
+        # get freq & difficulty    
         uniqueId = uuid.uuid5(uuid.NAMESPACE_DNS,word)
-        select_query = "SELECT frequency,toughness FROM tbl_deutsch WHERE id=%s"
+        select_query = "SELECT frequency,difficulty FROM tbl_deutsch WHERE id=%s"
         future = session.execute_async(select_query, [uniqueId])
         try:
             rows = future.result()
             row = rows.one()
-            # print (user.frequency, user.toughness)
-            word_frequency,word_toughness =  row.frequency,row.toughness
-            # print(word_frequency,": ",word_toughness)
+            # print (user.frequency, user.difficulty)
+            word_frequency,word_difficulty =  row.frequency,row.difficulty
+            # print(word_frequency,": ",word_difficulty)
         except ReadTimeout:
             log.exception("Query timed out:")
 
-        # print(word_frequency+1,word_toughness+value,word)
+        # print(word_frequency+1,word_difficulty+value,word)
 
 
-        update_query = "UPDATE tbl_deutsch SET frequency=%s,toughness=%s WHERE id=%s"
-        future = session.execute_async(update_query, [word_frequency+1,word_toughness+value,uniqueId])
+        update_query = "UPDATE tbl_deutsch SET frequency=%s,difficulty=%s WHERE id=%s"
+        future = session.execute_async(update_query, [word_frequency+1,word_difficulty+value,uniqueId])
         try:
             rows = future.result()
         except ReadTimeout:
@@ -151,7 +151,7 @@ if __name__ == "__main__":
         print(word.german,"=",word.english)
     
     # results={'Goldstaub':1}
-    # update_word_toughness_freq(results)
+    # update_word_difficulty_freq(results)
    
 
 

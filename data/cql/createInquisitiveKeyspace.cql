@@ -25,14 +25,14 @@ CREATE TABLE tbl_deutsch
     "synonyms" VARCHAR,
     "antonyms" VARCHAR,
     "frequency" DECIMAL,     
-    "toughness" DECIMAL,
+    "difficulty" DECIMAL,
 	PRIMARY KEY (("id"))
 );
 CREATE INDEX ON "tbl_deutsch" ("german_word");    
 CREATE INDEX ON "tbl_deutsch" ("english_word");
 CREATE INDEX ON "tbl_deutsch" ("partsofspeech");
 CREATE INDEX ON "tbl_deutsch" ("frequency");
-CREATE INDEX ON "tbl_deutsch" ("toughness");
+CREATE INDEX ON "tbl_deutsch" ("difficulty");
 
 
 -- Tables based on parts of speech
@@ -65,11 +65,11 @@ CREATE INDEX ON "tbl_conjunction" ("partsofspeech");
 -- (
 --     "german_word" VARCHAR,
 --     "frequency" COUNTER,
---     "toughness" COUNTER,
+--     "difficulty" COUNTER,
    
 -- 	PRIMARY KEY (("german_word"))
 -- );
 -- -- "Secondary indexes are not supported on counter tables"
 
--- CREATE INDEX ON "tbl_analytics" ("toughness"); 
+-- CREATE INDEX ON "tbl_analytics" ("difficulty"); 
 -- CREATE INDEX ON "tbl_analytics" ("frequency");

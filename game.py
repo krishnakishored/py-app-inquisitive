@@ -18,9 +18,9 @@ sys.path.append(sys.path[0] + "/..")  # To Fix: ValueError Attempted Relative Im
 
 
 from utils.word import get_wordpairs_from_file
-from db_handlers.cassandra_db_handler import CassandraConnection, get_wordpairs_from_table, update_word_toughness_freq
+# from db_handlers.cassandra_db_handler import get_wordpairs_from_table, update_word_difficulty_freq
 
-from db_handlers.sqlite_db_handler import 
+from db_handlers.sqlite_db_handler import get_wordpairs_from_table, update_word_difficulty_freq
 
 
 #ToDo: import 'difflib' to accept close matches
@@ -29,10 +29,10 @@ def compare_text(first,second):
     return first.casefold().strip() == second.casefold().strip()
 
 # interactive mode - choose "german" or "english"
-def interactive_console_app(num_of_questions=10,guess="german"):
+def interactive_console_app(database, table, num_of_questions=10,guess="german"):
     # runtime_wordlist = get_wordpairs_from_file(num_of_questions)
 
-    runtime_wordlist = get_wordpairs_from_table(num_of_questions)
+    runtime_wordlist = get_wordpairs_from_table(database,table,num_of_questions)
 
     question_number = 0
     results = {}
@@ -122,10 +122,12 @@ def report_card_app(results):
 
     wrongs = [i for i in results.values() if i==-1]
     print("wrong answers:{0}/{1}".format(len(wrongs),len(results)))
-    update_word_toughness_freq(results)
+    update_word_difficulty_freq(results)
 
 
 if __name__ == "__main__":
-    interactive_console_app(3,"english")
+    database = './data/sqlite3/inquisitive.db'
+    table= 'conjunction'
+    interactive_console_app(database,table,3,"english")
     # run_quiz_app(3,"german")
     # print(compare_text("baße ","Basse"))
