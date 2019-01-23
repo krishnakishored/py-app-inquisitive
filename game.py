@@ -20,7 +20,7 @@ sys.path.append(sys.path[0] + "/..")  # To Fix: ValueError Attempted Relative Im
 from utils.word import get_wordpairs_from_file
 # from db_handlers.cassandra_db_handler import get_wordpairs_from_table, update_word_difficulty_freq
 
-from db_handlers.sqlite_db_handler import get_wordpairs_from_table, update_word_difficulty_freq
+from db_handlers.sqlite_db_handler import get_wordpairs_from_table, capture_results
 
 
 #ToDo: import 'difflib' to accept close matches
@@ -63,7 +63,7 @@ def interactive_console_app(database, table, num_of_questions=10,guess="german")
             else:
                 results[word.german]= -1
                 print("correct ans:{0}".format(word.english))  
-    report_card_app(results)
+    report_card_app(results=results)
 
 
 # conduct the game as a quiz & evaluate
@@ -113,16 +113,16 @@ def run_quiz_app(num_of_questions = 10, guess="german"):
                 results[word.german]= -1
                 print("correct ans: {0}".format(word.english)) 
 
-    report_card_app(results)
+    report_card_app(results=results)
 
-def report_card_app(results):
+def report_card_app(database='./data/sqlite3/inquisitive.db',table='master',results={}):
     '''
     displays results & writes back to db for analytics
     '''
 
     wrongs = [i for i in results.values() if i==-1]
     print("wrong answers:{0}/{1}".format(len(wrongs),len(results)))
-    update_word_difficulty_freq(results)
+    capture_results(database,table,results)
 
 
 if __name__ == "__main__":

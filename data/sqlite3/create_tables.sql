@@ -15,8 +15,12 @@ CREATE TABLE IF NOT EXISTS master (
                                         difficulty integer
                                 ); 
 
-
+--
+-- indices
+--
 CREATE INDEX i_german_word ON master(german_word);
+CREATE INDEX i_frequency ON master(frequency);
+CREATE INDEX i_difficulty ON master(difficulty);
                                 
 --
 -- conjunction

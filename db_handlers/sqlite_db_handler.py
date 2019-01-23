@@ -74,6 +74,17 @@ def select_random_questions(database,table='conjunction', question_count=10):
         #     print(row)
         return rows
 
+def select_freq_difficulty_mastertable(database,table='master',where_key=''):
+    conn = create_connection(database)
+
+    with conn:
+        sql_select_freq_difficulty = ''' SELECT frequency, difficulty FROM {0} WHERE german_word=?  '''.format(table)
+        cur = conn.cursor()
+        cur.execute(sql_select_freq_difficulty,(where_key,)) # pass it as tuple; To Fix: Incorrect number of bindings supplied. The current statement uses 1, and there are 4 supplied.
+        rows = cur.fetchall()
+        # for row in rows:
+        #     print(row)
+        return rows        
 
 def insert_row_subtable(database, table, values):
     conn = create_connection(database)
@@ -113,17 +124,33 @@ def get_wordpairs_from_table(database= './data/sqlite3/inquisitive.db', table='c
         wordpair_list.append(current_word)
     return wordpair_list
 
-def update_word_difficulty_freq(results):
+def update_freq_difficulty_mastertable(database, table, values):
+    conn = create_connection(database)
+    with conn:
+        sql_update_freq_difficulty =  """ UPDATE {0} SET frequency = ?,difficulty= ? WHERE german_word= ? """.format(table)
+        cur = conn.cursor()
+        cur.execute(sql_update_freq_difficulty,values)
+        return cur.lastrowid
+
+def capture_results(database,table,results={}):
     '''
     takes a map of words, word:-1 or +1 for incorrect
      set frequency = frequency + 1 
      set difficulty = difficulty +1 or -1
+
+     select freq  & difficulty & update the fields from values of the results
     '''
-    pass
+    for word,value in results.items():
+        row = select_freq_difficulty_mastertable(database,table,word) # returns a tuple
+        word_frequency,word_difficulty =  row[0][0],row[0][1]
+        values = (word_frequency+1,word_difficulty+value,word)
+        update_freq_difficulty_mastertable(database,table,values)
+    
 
 if __name__ == '__main__':
     database = './data/sqlite3/inquisitive.db'
-    table= 'conjunction'
+    # table= 'conjunction'
+    table = 'master'
 
     sql_create_tbl_master = """ CREATE TABLE IF NOT EXISTS master (
                                         id integer PRIMARY KEY,
@@ -152,7 +179,9 @@ if __name__ == '__main__':
     # select_all_rows(database,table)
     # select_random_questions(database,table,3)
 
-    runtime_wordlist = get_wordpairs_from_table(database,table,5)
-    for word in runtime_wordlist:
-        print(word.german,"=",word.english)
+    # runtime_wordlist = get_wordpairs_from_table(database,table,5)
+    # for word in runtime_wordlist:
+    #     print(word.german,"=",word.english)
+
+    # capture_results(database,table)
     # delete_all_rows(database,table)
