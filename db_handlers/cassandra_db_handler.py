@@ -70,7 +70,7 @@ def populate_db_from_file(filename='./data/german_english.txt',delimiter=':'):
 
     # session.execute(batch) # batch too large
 
-def get_wordpairs_from_db(question_count=10,):
+def get_wordpairs_from_table(question_count=10,):
     ''' returns a list of word objects reading from the database'''
 
     # create a session with defaults
@@ -146,7 +146,7 @@ if __name__ == "__main__":
     delimiter=":"
     populate_db_from_file(filename,delimiter)
     
-    runtime_wordlist = get_wordpairs_from_db(5)
+    runtime_wordlist = get_wordpairs_from_table(5)
     for word in runtime_wordlist:
         print(word.german,"=",word.english)
     

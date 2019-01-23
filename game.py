@@ -18,7 +18,7 @@ sys.path.append(sys.path[0] + "/..")  # To Fix: ValueError Attempted Relative Im
 
 
 from utils.word import get_wordpairs_from_file
-from db_handlers.cassandra_db_handler import CassandraConnection, get_wordpairs_from_db, update_word_toughness_freq
+from db_handlers.cassandra_db_handler import CassandraConnection, get_wordpairs_from_table, update_word_toughness_freq
 
 from db_handlers.sqlite_db_handler import 
 
@@ -32,7 +32,7 @@ def compare_text(first,second):
 def interactive_console_app(num_of_questions=10,guess="german"):
     # runtime_wordlist = get_wordpairs_from_file(num_of_questions)
 
-    runtime_wordlist = get_wordpairs_from_db(num_of_questions)
+    runtime_wordlist = get_wordpairs_from_table(num_of_questions)
 
     question_number = 0
     results = {}
@@ -73,7 +73,7 @@ def interactive_console_app(num_of_questions=10,guess="german"):
 def run_quiz_app(num_of_questions = 10, guess="german"):
 
     # runtime_wordlist = get_wordpairs_from_file(num_of_questions)
-    runtime_wordlist = get_wordpairs_from_db(num_of_questions)
+    runtime_wordlist = get_wordpairs_from_table(num_of_questions)
 
     question_number = 0    
     # current_dictionary={}
