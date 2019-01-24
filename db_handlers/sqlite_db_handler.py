@@ -160,13 +160,15 @@ def capture_results(database,table,results={}):
     
 
 if __name__ == '__main__':
-    database = './data/sqlite3/inquisitive.db'
-    table= 'conjunction'
-    filename='./data/conjunction.txt'
-#     table = 'verb'
-#     filename='./data/verb.txt'
+	database = './data/sqlite3/inquisitive.db'
+#     table= 'noun'
+#     filename='./data/noun.txt'
+	table = 'verb'
+	filename='./data/verb.txt'
+	# table='conjunction'
+	# filename='./data/conjunction.txt'
 
-    sql_create_tbl_master = """ CREATE TABLE IF NOT EXISTS master (
+	sql_create_tbl_master = """ CREATE TABLE IF NOT EXISTS master (
                                         id integer PRIMARY KEY,
                                         german_word text UNIQUE NOT NULL,
                                         english_word text NOT NULL,
@@ -175,7 +177,7 @@ if __name__ == '__main__':
                                         difficulty integer
                                     ); """
     
-    sql_create_tbl_conjunction = """ CREATE TABLE IF NOT EXISTS conjunction (
+	sql_create_tbl_conjunction = """ CREATE TABLE IF NOT EXISTS conjunction (
                                         id integer PRIMARY KEY,
                                         german_word text UNIQUE NOT NULL,
                                         english_word text NOT NULL,
@@ -189,7 +191,7 @@ if __name__ == '__main__':
     # insert_row_subtable(database,table, value_tuple)
     
 
-    populate_db_from_file(database,table,filename,delimiter=':')
+	populate_db_from_file(database,table,filename,delimiter=':')
     # select_all_rows(database,table)
     # select_random_questions(database,table,3)
 
