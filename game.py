@@ -125,7 +125,7 @@ def report_card_app(database='./data/sqlite3/inquisitive.db',table='master',resu
 
 if __name__ == "__main__":
     database = './data/sqlite3/inquisitive.db'
-    table= 'master'
+    table= 'conjunction' # can specify a partsofspeech table name or master
     # interactive_console_app(database,table,3,"english")
     run_quiz_app(database,table,3,"german")
     # print(compare_text("baße ","Basse"))

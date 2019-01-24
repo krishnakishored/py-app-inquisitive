@@ -103,7 +103,7 @@ def insert_row_mastertable(database, table, values):
         cur.execute(sql_insert_row,values)
         return cur.lastrowid
 
-def populate_db_from_file(database='./data/sqlite3/inquisitive.db',table='master', filename='./data/german_english.txt',delimiter=':'):
+def populate_db_from_file(database='./data/sqlite3/inquisitive.db',table='master', filename='',delimiter=':'):
     '''
     read from a text file and insert into to the master table
     '''
@@ -113,20 +113,11 @@ def populate_db_from_file(database='./data/sqlite3/inquisitive.db',table='master
         insert_row_mastertable(database,'master',value_tuple)
 
 
-def populate_subtables_from_master(database='./data/sqlite3/inquisitive.db',table='conjunction', filename='./data/german_english.txt',delimiter=':'):
-    '''
-    ToDo: populate the subtables(partsofspeech tables) w.r.t any insertion into the master
-    read from a text file and insert into to the database
-    '''
-
-    word_dictionary = build_word_dict_from_file(filename,delimiter)
-    for ger,eng in word_dictionary.items():
-        value_tuple  = (ger,eng,table)
-        insert_row_subtable(database,table,value_tuple)
-        insert_row_mastertable(database,'master',value_tuple)
-
-
-
+def populate_subtables_from_master(database='./data/sqlite3/inquisitive.db',subtable='conjunction', filename='',delimiter=':'):
+	'''
+		ToDo: populate the subtables(partsofspeech tables) w.r.t any insertion into the master
+	'''
+	pass
 def get_wordpairs_from_table(database= './data/sqlite3/inquisitive.db', table='conjunction',question_count=10):
     ''' returns a list of word objects reading from the database'''  
     wordpair_list = []
@@ -161,10 +152,10 @@ def capture_results(database,table,results={}):
 
 if __name__ == '__main__':
 	database = './data/sqlite3/inquisitive.db'
-#     table= 'noun'
-#     filename='./data/noun.txt'
-	table = 'verb'
-	filename='./data/verb.txt'
+    # table= 'noun'
+    # filename='./data/noun.txt'
+	# table = 'verb'
+	# filename='./data/verb.txt'
 	# table='conjunction'
 	# filename='./data/conjunction.txt'
 
@@ -191,7 +182,11 @@ if __name__ == '__main__':
     # insert_row_subtable(database,table, value_tuple)
     
 
-	populate_db_from_file(database,table,filename,delimiter=':')
+	# populate_db_from_file(database,table,filename,delimiter=':')
+	populate_db_from_file(database,'noun','./data/noun.txt',delimiter=':')
+	populate_db_from_file(database,'verb','./data/verb.txt',delimiter=':')
+	populate_db_from_file(database,'conjunction','./data/conjunction.txt',delimiter=':')
+
     # select_all_rows(database,table)
     # select_random_questions(database,table,3)
 
