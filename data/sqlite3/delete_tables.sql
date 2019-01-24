@@ -3,4 +3,5 @@
  * $ sqlite> .read delete_tables.sql
  */
 DELETE FROM conjunction;
+DELETE FROM verb;
 DELETE FROM master;

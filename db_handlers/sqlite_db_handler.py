@@ -103,9 +103,19 @@ def insert_row_mastertable(database, table, values):
         cur.execute(sql_insert_row,values)
         return cur.lastrowid
 
-def populate_db_from_file(database='./data/sqlite3/inquisitive.db',table='conjunction', filename='./data/german_english.txt',delimiter=':'):
+def populate_db_from_file(database='./data/sqlite3/inquisitive.db',table='master', filename='./data/german_english.txt',delimiter=':'):
     '''
-    ToDo: populate the master w.r.t any insertion into the partsofspeech tables as auto-sync
+    read from a text file and insert into to the master table
+    '''
+    word_dictionary = build_word_dict_from_file(filename,delimiter)
+    for ger,eng in word_dictionary.items():
+        value_tuple  = (ger,eng,table)
+        insert_row_mastertable(database,'master',value_tuple)
+
+
+def populate_subtables_from_master(database='./data/sqlite3/inquisitive.db',table='conjunction', filename='./data/german_english.txt',delimiter=':'):
+    '''
+    ToDo: populate the subtables(partsofspeech tables) w.r.t any insertion into the master
     read from a text file and insert into to the database
     '''
 
@@ -114,6 +124,8 @@ def populate_db_from_file(database='./data/sqlite3/inquisitive.db',table='conjun
         value_tuple  = (ger,eng,table)
         insert_row_subtable(database,table,value_tuple)
         insert_row_mastertable(database,'master',value_tuple)
+
+
 
 def get_wordpairs_from_table(database= './data/sqlite3/inquisitive.db', table='conjunction',question_count=10):
     ''' returns a list of word objects reading from the database'''  
@@ -149,8 +161,10 @@ def capture_results(database,table,results={}):
 
 if __name__ == '__main__':
     database = './data/sqlite3/inquisitive.db'
-    # table= 'conjunction'
-    table = 'master'
+    table= 'conjunction'
+    filename='./data/conjunction.txt'
+#     table = 'verb'
+#     filename='./data/verb.txt'
 
     sql_create_tbl_master = """ CREATE TABLE IF NOT EXISTS master (
                                         id integer PRIMARY KEY,
@@ -175,7 +189,7 @@ if __name__ == '__main__':
     # insert_row_subtable(database,table, value_tuple)
     
 
-    # populate_db_from_file(database,table,filename='./data/conjunction.txt',delimiter=':')
+    populate_db_from_file(database,table,filename,delimiter=':')
     # select_all_rows(database,table)
     # select_random_questions(database,table,3)
 

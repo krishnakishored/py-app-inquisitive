@@ -39,17 +39,17 @@ def interactive_console_app(database, table, num_of_questions=10,guess="german")
     if(compare_text(guess,"german")):
         for word in runtime_wordlist:
             question_number = question_number+1    
-            print("{0}: {1}".format(question_number,word.english),end=" ")
+            print("{0}:{1}".format(question_number,word.english),end=" ")
             answer = str(input(" = "))
             # compare with nearest matches
             if(compare_text(word.german, answer)):
                 results[word.german]=1
             elif (compare_text(answer, "")):
                 results[word.german] = 0
-                print("pass: {0}".format(word.german)) 
+                print("skip: {0}".format(word.german)) 
             else:
                 results[word.german]=-1
-                print("correct ans:{0}".format(word.german))  
+                print("correct:{0}".format(word.german))  
     else:
         for word in runtime_wordlist:
             question_number = question_number+1    
@@ -59,21 +59,21 @@ def interactive_console_app(database, table, num_of_questions=10,guess="german")
                 results[word.german]= 1
             elif compare_text(answer,""):
                 results[word.german] = 0
-                print("pass: {0}".format(word.english)) 
+                print("skip: {0}".format(word.english)) 
             else:
                 results[word.german]= -1
-                print("correct ans:{0}".format(word.english))  
-    report_card_app(results=results)
+                print("correct:{0}".format(word.english))  
+    report_card_app(results=results)# always updates master
 
 
 # conduct the game as a quiz & evaluate
 
 
 ''' ToDo: Needs improvement w.r.t report card & two way quiz'''
-def run_quiz_app(num_of_questions = 10, guess="german"):
+def run_quiz_app(database, table, num_of_questions = 10, guess="german"):
 
     # runtime_wordlist = get_wordpairs_from_file(num_of_questions)
-    runtime_wordlist = get_wordpairs_from_table(num_of_questions)
+    runtime_wordlist = get_wordpairs_from_table(database,table,num_of_questions)
 
     question_number = 0    
     # current_dictionary={}
@@ -91,10 +91,10 @@ def run_quiz_app(num_of_questions = 10, guess="german"):
                 results[word.german]= 1
             elif compare_text(answer,""):
                 results[word.german] = 0
-                print("pass: {0}".format(word.german)) 
+                print("skip: {0}".format(word.german)) 
             else:
                 results[word.german]= -1
-                print("correct ans: {0}".format(word.german)) 
+                print("correct: {0}".format(word.german)) 
     else:
         for word in runtime_wordlist:
             question_number = question_number+1
@@ -104,30 +104,28 @@ def run_quiz_app(num_of_questions = 10, guess="german"):
             answer = str(input(" = "))
             #ToDo: write a method to compare with nearest matches
             if compare_text(word.english, answer):
-                # results["rights"].append(word.german)
                 results[word.german]= 1
             elif compare_text(answer,""):
                 results[word.german] = 0
-                print("pass: {0}".format(word.english)) 
+                print("skip: {0}".format(word.english)) 
             else:
                 results[word.german]= -1
-                print("correct ans: {0}".format(word.english)) 
+                print("correct: {0}".format(word.english)) 
 
-    report_card_app(results=results)
+    report_card_app(results=results)# always updates master
 
 def report_card_app(database='./data/sqlite3/inquisitive.db',table='master',results={}):
     '''
     displays results & writes back to db for analytics
     '''
-
-    wrongs = [i for i in results.values() if i==-1]
-    print("wrong answers:{0}/{1}".format(len(wrongs),len(results)))
+    wrong,skip,right =  sum(value == -1 for value in results.values()), sum(value == 0 for value in results.values()), sum(value == 1 for value in results.values())
+    print('wrong={0},right={1},skip={2}'.format(wrong,right,skip))
     capture_results(database,table,results)
 
 
 if __name__ == "__main__":
     database = './data/sqlite3/inquisitive.db'
-    table= 'conjunction'
-    interactive_console_app(database,table,3,"english")
-    # run_quiz_app(3,"german")
+    table= 'master'
+    # interactive_console_app(database,table,3,"english")
+    run_quiz_app(database,table,3,"german")
     # print(compare_text("baße ","Basse"))

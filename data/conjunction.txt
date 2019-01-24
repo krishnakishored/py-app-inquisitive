@@ -8,12 +8,12 @@ jedoch : but, however
 allein (rare expression) : 	but unfortunately
 
 
-entweder … oder : 	either … or
-sowohl … als auch : 	both … and
-weder … noch :	neither … nor
-einerseits, … andererseits :	on the one hand … on the other hand
-mal … mal : 	sometimes … sometimes
-teils … teils : partly … partly
+entweder ... oder : 	either ... or
+sowohl ... als auch : 	both ... and
+weder ... noch :	neither ... nor
+einerseits, ... andererseits :	on the one hand ... on the other hand
+mal ... mal : 	sometimes ... sometimes
+teils ... teils : partly ... partly
 
 
 bevor :	before
@@ -32,11 +32,11 @@ sobald :	as soon as
 solange :	as long as
 da :	because
 weil :	because
-indem :	by … -ing
+indem :	by ... -ing
 ob :	whether*, if (*only use when you could say whether in English as well)
 falls :	in case, if
 wenn :	if, when
-um … zu	 : in order to
+um ... zu	 : in order to
 dass :	that
 sodass :	so that
 damit :	so that
