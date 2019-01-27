@@ -10,7 +10,8 @@
 -- select german_word,frequency,difficulty from master where german_word='weder … noch';
 -- select german_word,frequency,difficulty from master where frequency>0 ;
 select german_word,frequency,difficulty from master where difficulty<0;
--- select german_word,frequency,difficulty from master where difficulty<0 AND (partsofspeech='verb' OR partsofspeech='conjunction');
+select german_word,frequency,difficulty from master where difficulty<0 AND (partsofspeech='verb');
+select german_word,frequency,difficulty from master where difficulty>0 AND (partsofspeech='verb');
 -- select german_word,frequency,difficulty from master where difficulty>0 AND (partsofspeech='verb' OR partsofspeech='conjunction');
 
 --

@@ -39,6 +39,16 @@ def create_table(database='./data/sqlite3/inquisitive.db', sql_create_table=''):
     else:
         print("Error! cannot create the database connection.")
 
+def execute_generic_query(database,table,sql_statement):
+    conn = create_connection(database)
+    with conn:
+        cur = conn.cursor()
+        cur.execute(sql_statement)
+        rows = cur.fetchall()
+        # for row in rows:
+        #     print(row)
+        return rows
+
 def delete_all_rows(database,table):
     """
     Delete all rows in the tasks table
@@ -114,18 +124,32 @@ def populate_db_from_file(database='./data/sqlite3/inquisitive.db',table='master
 
 
 def populate_subtables_from_master(database='./data/sqlite3/inquisitive.db',subtable='conjunction', filename='',delimiter=':'):
-	'''
-		ToDo: populate the subtables(partsofspeech tables) w.r.t any insertion into the master
-	'''
-	pass
-def get_wordpairs_from_table(database= './data/sqlite3/inquisitive.db', table='conjunction',question_count=10):
-    ''' returns a list of word objects reading from the database'''  
+        '''
+                ToDo: populate the subtables(partsofspeech tables) w.r.t any insertion into the master
+        '''
+        pass
+
+
+def get_random_wordpairs(database= './data/sqlite3/inquisitive.db', table='conjunction',question_count=10):
+    ''' returns a list of random word objects'''  
     wordpair_list = []
     rows_tuple = select_random_questions(database,table,question_count)   
     for row in rows_tuple:
         current_word = Word(row[0],row[1])
         wordpair_list.append(current_word)
     return wordpair_list
+
+
+def get_selected_wordpairs(database= './data/sqlite3/inquisitive.db', table='conjunction',question_count=10, sql_select_statement=""):
+    ''' returns a list of word objects based on a select..where statement '''  
+    wordpair_list = []
+    # sql_select_query = "SELECT german_word,english_word FROM verb where german_word LIKE 'ver%'"
+    rows_tuple = execute_generic_query(database,table,sql_select_statement)   
+    for row in rows_tuple:
+        current_word = Word(row[0],row[1])
+        wordpair_list.append(current_word)
+    return wordpair_list
+
 
 def update_freq_difficulty_mastertable(database, table, values):
     conn = create_connection(database)
@@ -151,15 +175,15 @@ def capture_results(database,table,results={}):
     
 
 if __name__ == '__main__':
-	database = './data/sqlite3/inquisitive.db'
+        database = './data/sqlite3/inquisitive.db'
     # table= 'noun'
     # filename='./data/noun.txt'
-	# table = 'verb'
-	# filename='./data/verb.txt'
-	# table='conjunction'
-	# filename='./data/conjunction.txt'
+        # table = 'verb'
+        # filename='./data/verb.txt'
+        # table='conjunction'
+        # filename='./data/conjunction.txt'
 
-	sql_create_tbl_master = """ CREATE TABLE IF NOT EXISTS master (
+        sql_create_tbl_master = """ CREATE TABLE IF NOT EXISTS master (
                                         id integer PRIMARY KEY,
                                         german_word text UNIQUE NOT NULL,
                                         english_word text NOT NULL,
@@ -168,12 +192,15 @@ if __name__ == '__main__':
                                         difficulty integer
                                     ); """
     
-	sql_create_tbl_conjunction = """ CREATE TABLE IF NOT EXISTS conjunction (
+        sql_create_tbl_conjunction = """ CREATE TABLE IF NOT EXISTS conjunction (
                                         id integer PRIMARY KEY,
                                         german_word text UNIQUE NOT NULL,
                                         english_word text NOT NULL,
                                         partsofspeech text
                                     ); """
+        
+        sql_select_query = "SELECT german_word,english_word FROM verb where german_word LIKE 'ver%'"
+        execute_generic_query(database,'verb',sql_select_query)
 
     # create_table(database,sql_create_tbl_conjunction)
     # create_table(database,sql_create_tbl_master) # ToDo - auto insert with insertion in any of the partsofspeech tables
@@ -182,15 +209,17 @@ if __name__ == '__main__':
     # insert_row_subtable(database,table, value_tuple)
     
 
-	# populate_db_from_file(database,table,filename,delimiter=':')
-	populate_db_from_file(database,'noun','./data/noun.txt',delimiter=':')
-	populate_db_from_file(database,'verb','./data/verb.txt',delimiter=':')
-	populate_db_from_file(database,'conjunction','./data/conjunction.txt',delimiter=':')
+        # # populate_db_from_file(database,table,filename,delimiter=':')
+        # populate_db_from_file(database,'noun','./data/noun.txt',delimiter=':')
+        # populate_db_from_file(database,'verb','./data/verb.txt',delimiter=':')
+        # populate_db_from_file(database,'conjunction','./data/conjunction.txt',delimiter=':')
+
+        
 
     # select_all_rows(database,table)
     # select_random_questions(database,table,3)
 
-    # runtime_wordlist = get_wordpairs_from_table(database,table,5)
+    # runtime_wordlist = get_random_wordpairs(database,table,5)
     # for word in runtime_wordlist:
     #     print(word.german,"=",word.english)
 
