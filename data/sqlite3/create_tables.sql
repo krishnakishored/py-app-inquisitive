@@ -61,3 +61,13 @@ CREATE TABLE IF NOT EXISTS noun (
 CREATE INDEX i_noun_german_word ON master(german_word); 
 
 -- CREATE TABLE noun AS SELECT german_word,english_word,partsofspeech FROM master where partsofspeech='noun';
+
+CREATE TABLE IF NOT EXISTS sentence (
+                                        id integer PRIMARY KEY,
+                                        german_word text UNIQUE NOT NULL,
+                                        english_word text NOT NULL,
+                                        -- plural text,
+                                        partsofspeech sentence
+                                        
+                                    );
+CREATE INDEX i_sentence_german_word ON master(german_word); 

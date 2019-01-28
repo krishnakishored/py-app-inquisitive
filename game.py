@@ -127,13 +127,21 @@ def report_card_app(database='./data/sqlite3/inquisitive.db',table='master',resu
 if __name__ == "__main__":
     database = './data/sqlite3/inquisitive.db'
     table= 'verb' # can specify a partsofspeech table name or master
-    # interactive_console_app(database,table,3,"english")
-    # run_quiz_app(database,table,5,"german")
     
-    # print(compare_text("baße ","Basse"))
-    select_query= "SELECT german_word,english_word FROM verb where german_word LIKE 'ver%' LIMIT 3"
-    interactive_console_app(database, table,5,guess="german", sql_statement=select_query)
+    '''
+    interactive 
+    '''
+    select_query= "SELECT german_word,english_word FROM sentence LIMIT 10"
+    # interactive_console_app(database, table,5,guess="german", sql_statement=select_query)
+    # interactive_console_app(database,table,3,"english")
 
+    '''
+    quiz
+    '''
+    run_quiz_app(database,'sentence',5,'german')
+    # print(compare_text("baße ","Basse"))
+    
+    
 
 
 

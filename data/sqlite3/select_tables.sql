@@ -12,6 +12,9 @@
 select german_word,frequency,difficulty from master where difficulty<0;
 select german_word,frequency,difficulty from master where difficulty<0 AND (partsofspeech='verb');
 select german_word,frequency,difficulty from master where difficulty>0 AND (partsofspeech='verb');
+
+select german_word,frequency,difficulty from master where difficulty>0 AND (partsofspeech='sentence');
+select german_word,frequency,difficulty from master where difficulty<0 AND (partsofspeech='sentence');
 -- select german_word,frequency,difficulty from master where difficulty>0 AND (partsofspeech='verb' OR partsofspeech='conjunction');
 
 --
@@ -29,3 +32,11 @@ SELECT * FROM verb ORDER BY RANDOM() LIMIT 3;
 -- noun
 --
 SELECT * FROM noun ORDER BY RANDOM() LIMIT 3;
+
+
+
+
+--
+-- sentence
+--
+SELECT * FROM sentence ORDER BY RANDOM() LIMIT 3;

@@ -4,4 +4,5 @@
  */
 DELETE FROM conjunction;
 DELETE FROM verb;
-DELETE FROM master;
+DELETE FROM sentence;
+-- DELETE FROM master;

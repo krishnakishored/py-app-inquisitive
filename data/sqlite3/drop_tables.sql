@@ -6,4 +6,5 @@
 DROP TABLE conjunction;
 DROP TABLE verb;
 DROP TABLE noun;
+DROP TABLE sentence;
 -- DROP TABLE master;
