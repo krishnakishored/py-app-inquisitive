@@ -17,8 +17,8 @@ seit : since, for
 von : from, of
 zu : to
 
-an : at, to, on an einem Ort   at a place  
-auf : on, upon  auf der Erde   on earth  
+an : at, to, on 
+auf : on, upon  
 hinter : behind  
 in  :  in, into  
 neben : next to, beside

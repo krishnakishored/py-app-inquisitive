@@ -23,11 +23,11 @@ import random
 class Word:
     """ Word class represents a german-english pair """
 
-    def __init__(self, german="", english="", article=""):
+    def __init__(self, german="", english="", veracity=0):
         """ Create a new word """
         self.german = german
         self.english = english
-        self.article = article
+        self.veracity = veracity
 
 
 '''

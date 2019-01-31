@@ -34,29 +34,23 @@ def run_quiz_app(database, table, num_of_questions = 10, guess="german"):
     Picks random words for the quiz
     '''
 
-    # runtime_wordlist = get_wordpairs_from_file(num_of_questions)
     runtime_wordlist = get_random_wordpairs(database,table,num_of_questions)
-
     question_number = 0    
-    # current_dictionary={}
-    results = {}
+    
     if(compare_text(guess,"german")):
         for word in runtime_wordlist:
-            question_number = question_number+1
-            
+            question_number = question_number+1            
             print("{0}: {1}".format(question_number,word.english),end=" ")
-
             answer = str(input(" = "))
             #ToDo: write a method to compare with nearest matches
             if compare_text(word.german, answer):
-                # results["rights"].append(word.german)
-                results[word.german]= 1
+                word.veracity = 1
             elif compare_text(answer,""):
-                results[word.german] = 0
+                word.veracity = 0
                 print("skip: {0}".format(word.german)) 
             else:
-                results[word.german]= -1
-                print("correct: {0}".format(word.german)) 
+                word.veracity = -1
+                print("====> {0}".format(word.german)) 
     else:
         for word in runtime_wordlist:
             question_number = question_number+1
@@ -66,20 +60,22 @@ def run_quiz_app(database, table, num_of_questions = 10, guess="german"):
             answer = str(input(" = "))
             #ToDo: write a method to compare with nearest matches
             if compare_text(word.english, answer):
-                results[word.german]= 1
+                word.veracity = 1
             elif compare_text(answer,""):
-                results[word.german] = 0
+                word.veracity = 0
                 print("skip: {0}".format(word.english)) 
             else:
-                results[word.german]= -1
-                print("correct: {0}".format(word.english)) 
-
-    report_card_app(results=results)# always updates master
+                word.veracity = -1
+                print("====> {0}".format(word.english)) 
+    report_card_app(database,table,runtime_wordlist)# always updates master
 
 
 # interactive mode - choose "german" or "english"
-def interactive_console_app(database, table, num_of_questions=10,guess="german", sql_statement=""):
-    # runtime_wordlist = get_wordpairs_from_file(num_of_questions)
+def interactive_console_app(database, table, num_of_questions,guess, sql_statement):
+    '''
+        Selects a list of words based on the given query
+    '''
+    
     runtime_wordlist = get_selected_wordpairs(database,table,num_of_questions,sql_statement)
 
     question_number = 0
@@ -91,36 +87,44 @@ def interactive_console_app(database, table, num_of_questions=10,guess="german",
             answer = str(input(" = "))
             # compare with nearest matches
             if(compare_text(word.german, answer)):
-                results[word.german]=1
+                # results[word.german]=1
+                word.veracity = 1
             elif (compare_text(answer, "")):
-                results[word.german] = 0
+                # results[word.german] = 0
+                word.veracity = 0
                 print("skip: {0}".format(word.german)) 
             else:
-                results[word.german]=-1
-                print("correct:{0}".format(word.german))  
+                # results[word.german]=-1
+                word.veracity = -1
+                print("====> {0}".format(word.german))  
     else:
         for word in runtime_wordlist:
             question_number = question_number+1    
             print("{0}: {1}".format(question_number,word.german),end=" ")
             answer = str(input(" = "))
             if (compare_text(word.english,answer)):
-                results[word.german]= 1
+                # results[word.german]= 1
+                word.veracity = 1
             elif compare_text(answer,""):
-                results[word.german] = 0
+                # results[word.german] = 0
+                word.veracity = 0
                 print("skip: {0}".format(word.english)) 
             else:
-                results[word.german]= -1
-                print("correct:{0}".format(word.english))  
-    report_card_app(results=results)# always updates master
+                # results[word.german]= -1
+                word.veracity = -1
+                print("====> {0}".format(word.english))  
+    report_card_app(database,table,runtime_wordlist)# always updates master
 
 
-def report_card_app(database='./data/sqlite3/inquisitive.db',table='master',results={}):
+def report_card_app(database,table,word_list):
     '''
     displays results & writes back to db for analytics
     '''
-    wrong,skip,right =  sum(value == -1 for value in results.values()), sum(value == 0 for value in results.values()), sum(value == 1 for value in results.values())
+    wrong = sum(word.veracity ==-1 for word in word_list)
+    skip = sum(word.veracity == 0 for word in word_list)
+    right = sum(word.veracity == 1 for word in word_list)
     print('wrong={0},right={1},skip={2}'.format(wrong,right,skip))
-    capture_results(database,table,results)
+    capture_results(database,table,word_list)
 
 if __name__ == "__main__":
     database = './data/sqlite3/inquisitive.db'
@@ -129,14 +133,15 @@ if __name__ == "__main__":
     '''
     interactive 
     '''
-    select_query= "SELECT german_word,english_word FROM sentence LIMIT 10"
-    # interactive_console_app(database, table,5,guess="german", sql_statement=select_query)
-    # interactive_console_app(database,table,3,"english")
+    # select_query= "SELECT german_word,english_word FROM noun LIMIT 5"
+    # num_of_questions = 5
+    # interactive_console_app(database, table,num_of_questions,guess="german", sql_statement=select_query)
+    
 
     '''
     quiz
     '''
-    run_quiz_app(database,'sentence',5,'german')
+    run_quiz_app(database,'preposition',5,'german')
     # print(compare_text("baße ","Basse"))
     
     

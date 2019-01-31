@@ -36,11 +36,11 @@ def create_table(database='./data/sqlite3/inquisitive.db', sql_create_table=''):
 	else:
 		print("Error! cannot create the database connection.")
 
-def execute_generic_query(database,table,sql_statement):
+def execute_generic_query(database,table,sql_statement, values):
 	conn = create_connection(database)
 	with conn:
 		cur = conn.cursor()
-		cur.execute(sql_statement)
+		cur.execute(sql_statement,values)
 		rows = cur.fetchall()
 		# for row in rows:
 		#     print(row)
