@@ -46,7 +46,7 @@ def get_session_with_defaults():
     cassConnection.auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra') #security flaw - read from environment
     return cassConnection.create_session()
 
-def populate_db_from_file(filename='./data/german_english.txt',delimiter=':'):
+def populate_table_from_file(filename='./data/german_english.txt',delimiter=':'):
     '''
     read from a text file and insert into to the database
     '''
@@ -144,7 +144,7 @@ if __name__ == "__main__":
 
     filename='./data/german_english.txt'
     delimiter=":"
-    populate_db_from_file(filename,delimiter)
+    populate_table_from_file(filename,delimiter)
     
     runtime_wordlist = get_random_wordpairs(5)
     for word in runtime_wordlist:

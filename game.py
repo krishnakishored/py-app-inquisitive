@@ -19,8 +19,7 @@ sys.path.append(sys.path[0] + "/..")  # To Fix: ValueError Attempted Relative Im
 
 from utils.word import get_wordpairs_from_file
 # from db_handlers.cassandra_db_handler import get_random_wordpairs, update_word_difficulty_freq
-
-from db_handlers.sqlite_db_handler import get_random_wordpairs,get_selected_wordpairs, capture_results
+from populate_data import capture_results, get_random_wordpairs, get_selected_wordpairs
 
 
 #ToDo: import 'difflib' to accept close matches
@@ -122,7 +121,6 @@ def report_card_app(database='./data/sqlite3/inquisitive.db',table='master',resu
     wrong,skip,right =  sum(value == -1 for value in results.values()), sum(value == 0 for value in results.values()), sum(value == 1 for value in results.values())
     print('wrong={0},right={1},skip={2}'.format(wrong,right,skip))
     capture_results(database,table,results)
-
 
 if __name__ == "__main__":
     database = './data/sqlite3/inquisitive.db'

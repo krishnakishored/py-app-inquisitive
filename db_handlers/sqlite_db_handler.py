@@ -7,9 +7,6 @@ from sqlite3 import Error
 import sys
 sys.path.append(sys.path[0] + "/..")  # To Fix: ValueError Attempted Relative Import Toplevel Package
 
-
-from utils.word import Word, build_word_dict_from_file
- 
 def create_connection(database):
 	""" create a database connection to a SQLite database """
 	try:
@@ -72,18 +69,6 @@ def select_all_rows(database,table):
 		for row in rows:
 			print(row)
 
-def select_random_questions(database,table='conjunction', question_count=10):
-	conn = create_connection(database)
-
-	with conn:
-		sql_select_random_rows = '''SELECT german_word, english_word FROM {0} ORDER BY RANDOM() LIMIT {1}'''.format(table, question_count)
-		cur = conn.cursor()
-		cur.execute(sql_select_random_rows)
-		rows = cur.fetchall()
-		# for row in rows:
-		#     print(row)
-		return rows
-
 def select_freq_difficulty_mastertable(database,table='master',where_key=''):
 	conn = create_connection(database)
 
@@ -113,43 +98,6 @@ def insert_row_mastertable(database, table, values):
 		cur.execute(sql_insert_row,values)
 		return cur.lastrowid
 
-def populate_db_from_file(database='./data/sqlite3/inquisitive.db',table='master', filename='',delimiter=':'):
-	'''
-	read from a text file and insert into to the master table
-	'''
-	word_dictionary = build_word_dict_from_file(filename,delimiter)
-	for ger,eng in word_dictionary.items():
-		value_tuple  = (ger,eng,table)
-		insert_row_mastertable(database,'master',value_tuple)
-
-
-def populate_subtables_from_master(database='./data/sqlite3/inquisitive.db',subtable='conjunction', filename='',delimiter=':'):
-		'''
-				ToDo: populate the subtables(partsofspeech tables) w.r.t any insertion into the master
-		'''
-		pass
-
-
-def get_random_wordpairs(database= './data/sqlite3/inquisitive.db', table='conjunction',question_count=10):
-	''' returns a list of random word objects'''  
-	wordpair_list = []
-	rows_tuple = select_random_questions(database,table,question_count)   
-	for row in rows_tuple:
-		current_word = Word(row[0],row[1])
-		wordpair_list.append(current_word)
-	return wordpair_list
-
-
-def get_selected_wordpairs(database= './data/sqlite3/inquisitive.db', table='conjunction',question_count=10, sql_select_statement=""):
-	''' returns a list of word objects based on a select..where statement '''  
-	wordpair_list = []
-	# sql_select_query = "SELECT german_word,english_word FROM verb where german_word LIKE 'ver%'"
-	rows_tuple = execute_generic_query(database,table,sql_select_statement)   
-	for row in rows_tuple:
-		current_word = Word(row[0],row[1])
-		wordpair_list.append(current_word)
-	return wordpair_list
-
 
 def update_freq_difficulty_mastertable(database, table, values):
 	conn = create_connection(database)
@@ -157,22 +105,7 @@ def update_freq_difficulty_mastertable(database, table, values):
 		sql_update_freq_difficulty =  """ UPDATE {0} SET frequency = ?,difficulty= ? WHERE german_word= ? """.format(table)
 		cur = conn.cursor()
 		cur.execute(sql_update_freq_difficulty,values)
-		return cur.lastrowid
-
-def capture_results(database,table,results={}):
-	'''
-	takes a map of words, word:-1 or +1 for incorrect
-	 set frequency = frequency + 1 
-	 set difficulty = difficulty +1 or -1
-
-	 select freq  & difficulty & update the fields from values of the results
-	'''
-	for word,value in results.items():
-		row = select_freq_difficulty_mastertable(database,table,word) # returns a tuple
-		word_frequency,word_difficulty =  row[0][0],row[0][1]
-		values = (word_frequency+1,word_difficulty+value,word)
-		update_freq_difficulty_mastertable(database,table,values)
-	
+		return cur.lastrowid		
 
 if __name__ == '__main__':
 		database = './data/sqlite3/inquisitive.db'
@@ -211,15 +144,6 @@ if __name__ == '__main__':
 		# insert_row_subtable(database,table, value_tuple)
 		
 		'''
-		# Populate tables
-		'''
-		# populate_db_from_file(database,'noun','./data/noun.txt',delimiter=':')
-		# populate_db_from_file(database,'verb','./data/verb.txt',delimiter=':')
-		# populate_db_from_file(database,'conjunction','./data/conjunction.txt',delimiter=':')
-		# populate_db_from_file(database,'sentence','./data/sentence.txt',delimiter=':')
-
-
-		'''
 		# execute queries
 		# '''
 		# sql_select_query = "SELECT german_word,english_word FROM verb where german_word LIKE 'ver%'"
@@ -227,10 +151,10 @@ if __name__ == '__main__':
 		# for row in rows:
 		# 	print(row[0],'=',row[1])
 
-		sql_select_query = "SELECT german_word,english_word FROM sentence WHERE german_word LIKE 'Ich kann das nicht%';"
-		rows = execute_generic_query(database,'sentence',sql_select_query)
-		for row in rows:
-			print(row[0],'=',row[1])
+		# sql_select_query = "SELECT german_word,english_word FROM sentence WHERE german_word LIKE 'Ich kann das nicht%';"
+		# rows = execute_generic_query(database,'sentence',sql_select_query)
+		# for row in rows:
+		# 	print(row[0],'=',row[1])
 	
 
 		# select_all_rows(database,table)
@@ -240,5 +164,4 @@ if __name__ == '__main__':
 		# for word in runtime_wordlist:
 		#     print(word.german,"=",word.english)
 
-		# capture_results(database,table)
 		# delete_all_rows(database,table)
