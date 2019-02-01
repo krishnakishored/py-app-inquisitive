@@ -59,7 +59,8 @@ def populate_subtables(database, table_file_dictionary,delimiter):
 
 def capture_results(database,table,word_list):
 	'''
-	takes a map of words, word:-1 or +1 for incorrect
+	 table = master (default)
+	 takes a map of words, word:-1 or +1 for incorrect
 	 set frequency = frequency + 1 
 	 set difficulty = difficulty +1 or -1
 
@@ -70,19 +71,17 @@ def capture_results(database,table,word_list):
 	update_sql= "UPDATE master SET frequency=?, difficulty=? WHERE german_word=?"
 	select_sql= "SELECT frequency, difficulty FROM master WHERE german_word=?"
 	insert_sql = "INSERT OR IGNORE INTO master(german_word, english_word, partsofspeech,frequency,difficulty) values (?,?,?,0,0)"
-	update_values = (2,3,'zu')
-	insert_values = ('zu','to','preposition')
-	result = execute_generic_query(database,'master',update_sql,update_values)
-	if not result:
-		print(execute_generic_query(database,'master',insert_sql, insert_values))
-
+	# update_values = (2,3,'zu')
+	# insert_values = ('zu','to','preposition')
+	# result = execute_generic_query(database,'master',update_sql,update_values)
+	# if not result:
+	# 	print(execute_generic_query(database,'master',insert_sql, insert_values))
 	for word in word_list:
-		insert_values = ('zu','to','preposition')
+		insert_values = (word.german,word.english,table)
 		execute_generic_query(database,'master',insert_sql, insert_values)
-		row = execute_generic_query(database,table,select_sql,(word.german,))
-		print(row)
+		row = select_freq_difficulty_mastertable(database,'master',word.german) # returns a tuple list
 		word_frequency,word_difficulty =  row[0][0],row[0][1]
-		update_values = (2,3,'zu')
+		update_values = (word_frequency+1,word_difficulty+word.veracity,word.german)
 		execute_generic_query(database,'master',update_sql,update_values)
 
 	# for word,value in results.items():

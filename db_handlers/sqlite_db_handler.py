@@ -36,7 +36,10 @@ def create_table(database='./data/sqlite3/inquisitive.db', sql_create_table=''):
 	else:
 		print("Error! cannot create the database connection.")
 
-def execute_generic_query(database,table,sql_statement, values):
+def execute_generic_query(database,table,sql_statement, values=""):
+	'''
+	execute generic 'select' queries
+	'''
 	conn = create_connection(database)
 	with conn:
 		cur = conn.cursor()
@@ -109,13 +112,6 @@ def update_freq_difficulty_mastertable(database, table, values):
 
 if __name__ == '__main__':
 		database = './data/sqlite3/inquisitive.db'
-	# table= 'noun'
-	# filename='./data/noun.txt'
-		# table = 'verb'
-		# filename='./data/verb.txt'
-		# table='conjunction'
-		# filename='./data/conjunction.txt'
-
 		sql_create_tbl_master = """ CREATE TABLE IF NOT EXISTS master (
 										id integer PRIMARY KEY,
 										german_word text UNIQUE NOT NULL,

@@ -123,29 +123,32 @@ def report_card_app(database,table,word_list):
     wrong = sum(word.veracity ==-1 for word in word_list)
     skip = sum(word.veracity == 0 for word in word_list)
     right = sum(word.veracity == 1 for word in word_list)
-    print('wrong={0},right={1},skip={2}'.format(wrong,right,skip))
+    print('wrong={0},right={1},skip={2} in {3}'.format(wrong,right,skip, table))
     capture_results(database,table,word_list)
 
 if __name__ == "__main__":
     database = './data/sqlite3/inquisitive.db'
-    table= 'verb' # can specify a partsofspeech table name or master
     
-    '''
-    interactive 
-    '''
-    # select_query= "SELECT german_word,english_word FROM noun LIMIT 5"
-    # num_of_questions = 5
-    # interactive_console_app(database, table,num_of_questions,guess="german", sql_statement=select_query)
-    
+    game_mode = "quiz"
 
-    '''
-    quiz
-    '''
-    run_quiz_app(database,'preposition',5,'german')
-    # print(compare_text("baße ","Basse"))
-    
-    
+    if(game_mode=='quiz'):
+        '''
+        quiz based on random selection
+        '''
+        table = 'noun'
+        num_of_questions = 3
+        # run_quiz_app(database,table,num_of_questions,"english")
+        run_quiz_app(database,table,num_of_questions,"german")
+    else:    
+        '''
+        interactive 
+        # a specific query with 'where' clause to select the choice of questions
+        '''
+        table= 'noun' # can specify a partsofspeech table name or master
+        num_of_questions = 3
+        #  select_query= "SELECT german_word,english_word FROM {0} LIMIT {1}".format(table,num_of_questions)
+        select_query= "SELECT german_word,english_word FROM {0} ORDER BY RANDOM() LIMIT {1}".format(table,num_of_questions)
+        interactive_console_app(database, table,num_of_questions,guess="english", sql_statement=select_query)
+        
 
-
-
-    # run_quiz_app(database,table,5,"english")
+   
