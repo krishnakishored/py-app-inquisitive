@@ -1,18 +1,3 @@
-'''
-
-Game runtime 
-- 1. config from yaml or json: 
-- 2. Types of game: 
-    - Interactive
-    - Quiz
-- 3. Select words based on 
-        - random (query can be a join - like select  random words where toughIndex is low or frequency is high)
-        - frequency
-        - toughIndex
-        - partsofspeech
-        - meaning
-
-'''
 import sys
 sys.path.append(sys.path[0] + "/..")  # To Fix: ValueError Attempted Relative Import Toplevel Package
 
@@ -162,28 +147,37 @@ if __name__ == "__main__":
     run_inquisitive_with_args()
 
 
-    # #defaults
-    # database = './data/sqlite3/inquisitive.db'
-    # game_mode = "quiz"
-    # table= 'noun' # can specify a partsofspeech table name or master
-    # num_of_questions = 3
+'''
+Archived
+ #ToDo: List of Tasks involved in the creating the "Thesaurus Quiz"
+ 1. From the database tables & get a list of (key,values) for the session. 
+ 2. Implement sessions - user & reading from config
+    The list of words used during the runtime can be based on a config options - no.of words, parts of speech, tough words, new words
+ 3. Implement the random selection of words initially - the default option
+ 4. Identify duplicates - keys or values in the input_thesauras
+ 5. use diff-lib to match the correct answers - consider partially correct & misspelt answers
+ 6. increment the answeredcorrect counter value for each word after the quiz- this decides the difficult level
+ 7. Read from Cassandra & populate Redis db - use the redis db instance during the quiz
+ 
+ Game runtime 
+- 1. config from yaml or json: 
+- 2. Types of game: 
+    - Interactive
+    - Quiz
+- 3. Select words based on 
+        - random (query can be a join - like select  random words where toughIndex is low or frequency is high)
+        - frequency
+        - toughIndex
+        - partsofspeech
+        - meaning
 
-    
 
-    # if(game_mode=='quiz'):
-    #     '''
-    #     quiz based on random selection
-    #     '''
-    #     # run_quiz_app(database,table,num_of_questions,"english")
-    #     run_quiz_app(database,table,num_of_questions,"german")
-    # else:    
-    #     '''
-    #     interactive 
-    #     # a specific query with 'where' clause to select the choice of questions
-    #     '''
-    #     #  select_query= "SELECT german_word,english_word FROM {0} LIMIT {1}".format(table,num_of_questions)
-    #     select_query= "SELECT german_word,english_word FROM {0} ORDER BY RANDOM() LIMIT {1}".format(table,num_of_questions)
-    #     interactive_console_app(database, table,num_of_questions,guess="english", sql_statement=select_query)
-        
-    
-   
+#file reading writing  - pythonic way
+#Notes
+with is the nice and efficient pythonic way to read large files. 
+ 1) file object is automatically closed after exiting from with execution block. 
+ 2) exception handling inside the with block. 
+ 3) memory for loop iterates through the f file object line by line. 
+ internally it does buffered IO (to optimized on costly IO operations) and memory management.
+
+'''

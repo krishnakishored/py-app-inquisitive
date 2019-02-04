@@ -73,6 +73,26 @@ def word_trimmer(word="",delimiter1="~",delimiter2=":"):
 	# print(word)
 	return word
 
+def line_counter(file):
+    return int(subprocess.check_output('wc -l {}'.format(file), shell=True).split()[0])
+
+
+'''
+# Util function() to Read lines (with a delimiter) from an input file as keys - values 
+    Write to the file_output after interchanging
+    args - input_filename, delimiter, output_filename
+'''
+def interchange_key_value_in_file(ip,delimiter,op):
+    with open(op, 'w') as file_output:
+        with open(ip) as file_input:
+            for line_read in file_input:
+                word,meaning = line_read.split(delimiter) if delimiter in line_read else (line_read,"")
+                #word,meaning = line_read.split(' - ') # 
+                line_write = meaning.strip()+delimiter+word.strip()
+                #file_output.write(line_write)
+                # print(line_write,file=file_output)#to append a newline  
+                print(line_write,file=file_output)#to append a newline  
+
 
 
 def display_keyvalue_pairs(word_dictionary,delimiter=' - '):
