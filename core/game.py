@@ -116,7 +116,6 @@ def report_card_app(database,table,word_list):
 import argparse
 
 def run_inquisitive_with_args(*args,**kwargs):
-    parser = argparse.ArgumentParser()
     parser = argparse.ArgumentParser(description='inquisitive app')
     
     parser.add_argument("-m","--mode", help="choose (i)nteractive or (q)uiz ",default="q")

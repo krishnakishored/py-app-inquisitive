@@ -67,7 +67,6 @@ def capture_results(database,table,word_list):
 	 select freq  & difficulty & update the fields from values of the results
 	 
 	'''
-	
 	update_sql= "UPDATE master SET frequency=?, difficulty=? WHERE german_word=?"
 	select_sql= "SELECT frequency, difficulty FROM master WHERE german_word=?"
 	insert_sql = "INSERT OR IGNORE INTO master(german_word, english_word, partsofspeech,frequency,difficulty) values (?,?,?,0,0)"
@@ -102,14 +101,15 @@ if __name__ == "__main__":
 	# Populate tables
 	'''
 	table_file_dictionary = {
-		'sentence': './data/sentence.txt',
-		'noun': './data/noun.txt', 
-		'verb': './data/verb.txt',
-		'preposition': './data/preposition.txt',
-		'conjunction': './data/conjunction.txt'	
+		# 'sentence': './data/sentence.txt',
+		# 'noun': './data/noun.txt', 
+		# 'verb': './data/verb.txt',
+		# 'preposition': './data/preposition.txt',
+		# 'conjunction': './data/conjunction.txt', 	
+		'adverb': './data/adverb.txt'
 	}	
 	delimiter= ":"
-	# populate_subtables(database,table_file_dictionary,delimiter)
+	populate_subtables(database,table_file_dictionary,delimiter)
 
 
 	'''

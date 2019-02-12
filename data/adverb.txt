@@ -1,0 +1,81 @@
+anders : different
+äußerst : extremely
+beinahe : nearly
+bekanntlich : famously
+ebenfalls : likewise
+fast : almost
+folgendermaßen : as follows
+ganz : completely
+genauso : exactly like
+genug : enough
+gern : gladly
+größtenteils : mostly
+hauptsächlich : mainly
+hoffentlich : hopefully
+kaum : hardly
+leider : unfortunately
+möglicherweise : possibly
+reihenweise : row after row, by the dozen
+sehr : very
+so : so/thus/in that way
+vielleicht : perhaps
+wirklich : truly/really
+also : so, therefore
+anstandshalber : for decency’s sake
+dadurch : through that/because of that
+darum : therefore/because of that
+demnach : thus/according to that
+demzufolge : whereby/accordingly
+deshalb : therefore
+folglich : consequently
+sicherheitshalber : preventatively
+somit : thus/therefore
+trotzdem : despite that
+wo : where
+womit : with which
+wofür : for which
+worüber : about which
+außerdem : besides
+danach : thereafter
+deshalb : therefore
+folglich : consequently
+schließlich : finally
+trotzdem : despite that
+zuvor : previously
+aufwärts : upwards
+außen : outside
+da : here/there
+dort : there/over there
+drinnen : inside
+fort : away
+hier : here
+hierhin : up to here
+hinein : into
+hinten : behind
+irgendwo : somewhere
+links : left (of)
+nebenan : near
+oberhalb : above
+überall : everywhere
+unten : below
+vorn : in front
+bald : soon
+bereits : already
+bisher : until now
+danach : thereafter
+davor : beforehand
+einst : once
+endlich : eventually/finally
+freitags : on Fridays
+gestern : yesterday
+immer : always
+inzwischen : meanwhile
+neulich : recently/lately
+nie : never
+oft : often
+regelmäßig : regularly
+sofort : immediately
+stets : constantly
+täglich : daily
+vorhin : earlier
+zurzeit : at the time

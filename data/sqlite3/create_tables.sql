@@ -37,7 +37,22 @@ CREATE TABLE IF NOT EXISTS verb (
                                         
                                     );       
 
-CREATE INDEX i_verb_german_word ON master(german_word);                                                      
+CREATE INDEX i_verb_german_word ON master(german_word);      
+
+--
+-- adverb
+--
+CREATE TABLE IF NOT EXISTS adverb (
+                                        id integer PRIMARY KEY,
+                                        german_word text UNIQUE NOT NULL,
+                                        english_word text NOT NULL,
+                                        -- conjugation text,
+                                        partsofspeech text
+                                        
+                                    );       
+
+CREATE INDEX i_adverb_german_word ON master(german_word); 
+
 --
 -- conjunction
 --
@@ -80,8 +95,9 @@ CREATE TABLE IF NOT EXISTS sentence (
                                         german_word text UNIQUE NOT NULL,
                                         english_word text NOT NULL,
                                         -- plural text,
-                                        partsofspeech sentence
+                                        partsofspeech text
+                                        -- theme text
                                         
                                     );
 CREATE INDEX i_sentence_german_word ON master(german_word); 
-CREATE INDEX i_sentence_german_word ON master(english_word);
+CREATE INDEX i_sentence_english_word ON master(english_word);

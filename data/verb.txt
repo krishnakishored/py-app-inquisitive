@@ -7,7 +7,7 @@
  machen: to do, make
  geben: to give
  kommen: to come
- sollen should, ought: to
+ sollen:  should, ought to
  wollen: to want
  gehen: to go
  wissen: to know
@@ -21,7 +21,7 @@
  denken: to think
  nehmen: to take
  tun: to do
- dürfen may,: to be allowed
+ dürfen : may, to be allowed
  glauben: to believe
  halten: to stop, hold
  nennen: to name, to call (a name)
@@ -50,7 +50,7 @@
  erzählen: to narrate, tell
  versuchen: to try, attempt
  schreiben: to write
- laufen,: to run
+ laufen : to run
  erklären: to explain
  entsprechen: to correspond
  sitzen: to sit
@@ -88,7 +88,7 @@
  schließen: to close
  fühlen: to feel
  bieten: to offer
- interessierento interest 
+ interessieren: to interest 
  erinnern: to remember
  ergeben: to result in
  anbieten: to offer
