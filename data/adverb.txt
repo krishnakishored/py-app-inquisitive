@@ -2,13 +2,13 @@ anders : different
 äußerst : extremely
 beinahe : nearly
 bekanntlich : famously
-ebenfalls : likewise
+ebenfalls : likewise, as well
 fast : almost
 folgendermaßen : as follows
 ganz : completely
 genauso : exactly like
 genug : enough
-gern : gladly
+gern : gladly, like to
 größtenteils : mostly
 hauptsächlich : mainly
 hoffentlich : hopefully
@@ -22,11 +22,10 @@ vielleicht : perhaps
 wirklich : truly/really
 also : so, therefore
 anstandshalber : for decency’s sake
-dadurch : through that/because of that
+dadurch : through that, because of that
 darum : therefore/because of that
 demnach : thus/according to that
 demzufolge : whereby/accordingly
-deshalb : therefore
 folglich : consequently
 sicherheitshalber : preventatively
 somit : thus/therefore
@@ -35,24 +34,32 @@ wo : where
 womit : with which
 wofür : for which
 worüber : about which
-außerdem : besides
-danach : thereafter
+woher : where .. from
+warum : why
+wieso : why
 deshalb : therefore
 folglich : consequently
 schließlich : finally
-trotzdem : despite that
-zuvor : previously
 aufwärts : upwards
 außen : outside
-da : here/there
-dort : there/over there
+draußen : outdoors
+da : there, over there, here
+dort : there, over there
 drinnen : inside
+herein : inside, in 
+rein : pure, inside
 fort : away
 hier : here
+hiermit : with this
+hierher : here, this way
 hierhin : up to here
 hinein : into
-hinten : behind
-irgendwo : somewhere
+hinten : back, behind
+weiterhin : continue to
+wohin : where, where to
+hingegen : in contrast, on the other hand
+hinzu : in addition to, besides
+außerdem : besides
 links : left (of)
 nebenan : near
 oberhalb : above
@@ -65,17 +72,124 @@ bisher : until now
 danach : thereafter
 davor : beforehand
 einst : once
-endlich : eventually/finally
+endlich : eventually, finally
 freitags : on Fridays
 gestern : yesterday
 immer : always
 inzwischen : meanwhile
 neulich : recently/lately
-nie : never
+
 oft : often
 regelmäßig : regularly
-sofort : immediately
+sofort : immediately, right away
 stets : constantly
 täglich : daily
-vorhin : earlier
+
+zu : at, too, to
 zurzeit : at the time
+zuerst : at first
+zuletzt : at last
+dazu : to, for that
+zuvor : previously
+hierzu : about this	
+zuvor : before, previously
+zusammen : together
+zurück : back, returned
+zugleich : simultaneously
+zumindest : at least
+mindestens : at least
+wenigstens : at least
+darüber : about it
+daher : therefore
+genauso : just as
+sonst : Other than that
+dabei : with, there
+jedenfalls : definitely
+einmal : once
+mal : time, just
+normalerweise : normally, generally
+nochmals : again
+niemals : never
+nie : never
+manchmal : sometimes
+damals : back then, at that time
+allein : alone, by oneself
+meisten : usually, for the most part
+auch : also, too
+selber : myself, yourself
+durchaus : absolutely
+damit : so that
+nun : now that, well
+jedoch : However
+besonders : especially
+überhaupt : at all 
+gar : at all
+noch : still, yet	
+wieder : again, in turn
+dran : turn	
+nur : only, just
+soeben : just	
+bitte : Please Come again?, I beg your pardon
+nicht : not, do not	
+rechts : right
+weg : way, path
+heraus : out, down
+herum : around, over
+hinaus : out, down
+hin : to
+vorhin : earlier
+unterwegs : on the road, on the way
+voraus : ahead, advance
+raus : go outside
+gratis : free
+weniger : less
+je : ever, the
+oben : upstairs, at the top
+drüben : across, over there
+innen : on the inside
+nebenan : next door
+vorne : in from of
+herunter : down, off
+nachts : at night
+morgen : tomorrow, morning
+lange : long, a long time
+dann : in that cases
+jetzt : just now
+heute : today
+gerade : right now
+etwa : about, approximately
+spätestens : at the latest
+bald : soon, almost
+vorbei : finished, over
+ja : yes
+nein : no
+daran : on it, about it	
+davon : of, of that
+vorher : before hand
+insbesondere : particularly
+derzeit : currently
+natürlich : naturally, of course
+sehr : very	
+ziemlich : pretty, quite
+irgendwie : somehow
+irgendwann : sometime
+wann : When, at what time
+irgendwo : somewhere
+dennoch : nevertheless, still
+mittlerweile : by now, in the mean time
+deswegen : that is why, for that reason
+eher : rather, earlier	
+jederzeit : at any time
+ansonsten : otherwise, apart from
+übrigens : incidentally, actually
+eigentlich : actually
+allerdings : however, though
+wohl : well, probably
+sogar : even	
+dafür : for that
+darauf : of it, to that
+soweit : as far as, ready
+seltsamen : strangely, odds
+
+
+
