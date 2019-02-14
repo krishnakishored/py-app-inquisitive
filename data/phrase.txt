@@ -29,3 +29,7 @@ Ich bin unterwegs nach Berlin : I am on the road to Berlin
 Vorher müssen wir was kochen : We have to cook something beforehand
 Ansonten haben die Gebäude alles : Apart from that the buildings have everything
 Diese Katze ist irgendwiese seltsam : This cat is somehow strange
+Lieferung an wen? : Shipment to whom?
+Freizeit ist Kindern wichtig : Freetime is important to children
+Wir hatten noch nie so viele zuschauer : we never had these many spectators
+Die Mannschaft ist toll : the team is terrific
