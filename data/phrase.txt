@@ -55,7 +55,7 @@ Es sieht so aus : It looks like that
 Es war schön, dich zu sehen :  It was nice to see you
 der eigenartigen Begegnung : The strange encounter
 Sie saß direkt neben mir! : She was sitting right next to me!
-Das klingt ernst: That sounds serious
+Das klingt ernst : That sounds serious
 ich war nicht ehrlich zu dir: I was not honest with you
 Ich habe dich angelogen : I lied to you
 Ich muss dir einfach die Wahrheit sagen : I just have to tell you the truth
@@ -84,3 +84,19 @@ Was ist zuerst passiert? : What happend first?
 Das bildest du dir alles ein : That's what you imagine
 Mach zwei daraus : Make that two
 von vorn beginnen : start over
+Das klingt gut : That sounds good
+Meine Tochter will ein Klavier : My daughter wants a piano
+The orchestra was conducted by the conductor : Das Orchester wurde vom Dirigenten dirigiert
+Der Komponist schreibt Lieder : The composer is writing songs
+Freiheit ist wichtig : Freedom is important
+Achtung, the polizei : Attention, the police
+Europas Wirtschaft läuft schon besser : Europe's economy is doing better already.
+Besuche sind nur nach Vereinbarung möglich : Visits are only possible by appointment.
+Freiheit steht unter dem Schutz des Königs : Freedom is under the protection of the king
+Das Alien hat ein weißes Weltraumschiff : The alien has a white space ship.
+Wir hatten die Lösung entdeckt. : We had discovered the solution.
+Das ist unglaublich! : That's incredible
+Wenn du eine Zeitreise machen könntest, was würdest du dir anschauen? : If you could go on a time travel, what would you look at?
+Sie hätten das Haus entdeckt : They would have discovered the house.
+Es war eine magische Nacht : It was a magical night
+
