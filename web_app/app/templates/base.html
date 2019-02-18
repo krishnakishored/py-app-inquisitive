@@ -1,0 +1,17 @@
+<html>
+
+<head>
+    {% if title %}
+    <title>{{ title }} - wortspiel</title>
+    {% else %}
+    <title>Welcome to wortspiel!</title>
+    {% endif %}
+</head>
+
+<body>
+    <div>Wortspiel: <a href="/index">Home</a></div>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+
+</html>

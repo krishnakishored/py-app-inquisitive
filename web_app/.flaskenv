@@ -1,1 +1,2 @@
 FLASK_APP=wortspiel.py
+FLASK_ENV=development

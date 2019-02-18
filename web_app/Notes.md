@@ -36,10 +36,7 @@ This does the following things:
 You can also control debug mode separately from the environment by exporting `FLASK_DEBUG=1`
 
 * Install `python-dotenv` package  & Then you can just write the environment variable name and value in a .flaskenv file in the top-level directory of the project:
-`FLASK_APP=microblog.py`
-
-
-
+`FLASK_APP=wortspiel.py`
 
 
 #### Routing
