@@ -143,6 +143,28 @@ To redirect a user to another endpoint, use the `redirect()` function; to abort 
 By default a black and white error page is shown for each error code. If you want to customize the error page, you can use the `errorhandler()` decorator: `@app.errorhandler(404)`
 `return render_template('page_not_found.html'), 404` - Note the 404 after the render_template() call. This tells Flask that the status code of that page should be 404 which means not found. By default 200 is assumed which translates to: all went well.
 
+
+#### Databases
+The first is `Flask-SQLAlchemy`, an extension that provides a Flask-friendly wrapper to the popular SQLAlchemy package, which is an Object Relational Mapper or ORM. 
+ORMs allow applications to manage a database using high-level entities such as classes, objects and methods instead of tables and SQL.
+
+#### Models 
+The data stored in the database is represented by a collection of classes, usually called database models. The ORM layer within SQLAlchemy will do the translations required to map objects created from these classes into rows in the proper database tables.
+
+#### Migrations
+* `flask db init` - create the migration repository
+*  $ `flask db migrate -m "users table"`
+*  The `flask db migrate` command does not make any changes to the database, it just generates the migration script.
+*  $  `flask db upgrade`
+*  you also have a `flask db downgrade` command, which undoes the last migration.
+
+#### Shell Context
+ The `flask shell` command is another very useful tool in the flask umbrella of commands. The shell command is the second "core" command implemented by Flask, after run. 
+ >>> app
+<Flask 'app'>
+
+The `app.shell_context_processor` decorator registers the function as a shell context function. When the flask shell command runs, it will invoke this function and register the items returned by it in the shell session. 
+
 #### About Responses
 The return value from a view function is automatically converted into a `response` object for you.
 
