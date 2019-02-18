@@ -126,6 +126,17 @@ Note that cookies are set on response objects. Since you normally just return st
 
 This is possible by utilizing the `Deferred Request Callbacks` pattern.
 
+
+#### Configuration
+There are several formats for the application to specify configuration options. The most basic solution is to define your variables as keys in app.config, which uses a dictionary style to work with variables. - `app.config['SECRET_KEY'] = 'you-will-never-guess'` 
+Separation of concerns: 
+ Have a config file, tell Flask to read it and apply it. That can be done right after the Flask application instance is created using the `app.config.from_object()` method:
+
+#### Forms
+The `form.hidden_tag()` template argument generates a hidden field that includes a token that is used to protect the form against CSRF attacks. All you need to do to have the form protected is include this hidden field and have the SECRET_KEY variable defined in the Flask configuration. If you take care of these two things, `Flask-WTF` does the rest for you.
+All I needed to do was to include {{ form.<field_name>.label }} where I wanted the field label, and {{ form.<field_name>() }} where I wanted the field. For fields that require additional HTML attributes, those can be passed as arguments. 
+use `url_for()` to generate an application URL. some URLs have dynamic components in them, so generating those URLs by hand would require concatenating multiple elements, which is tedious and error prone.
+
 #### Redirects and Errors
 To redirect a user to another endpoint, use the `redirect()` function; to abort a request early with an error code, use the `abort()` function:
 
@@ -151,7 +162,6 @@ The `escape()` mentioned here does escaping for you if you are not using the tem
 A note on cookie-based sessions: Flask will take the values you put into the session object and serialize them into a cookie. If you are finding some values do not persist across requests, cookies are indeed enabled, and you are not getting a clear error message, check the size of the cookie in your page responses compared to the size supported by web browsers.
 
 Besides the default client-side based sessions, if you want to handle sessions on the server-side instead, there are several Flask extensions that support this.
-
 
 #### Message Flashing
 Flask provides a really simple way to give feedback to a user with the flashing system. The flashing system basically makes it possible to record a message at the end of a request and access it on the next (and only the next) request. This is usually combined with a layout template to expose the message.
