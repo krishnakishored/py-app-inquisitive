@@ -33,3 +33,25 @@ Lieferung an wen? : Shipment to whom?
 Freizeit ist Kindern wichtig : Freetime is important to children
 Wir hatten noch nie so viele zuschauer : we never had these many spectators
 Die Mannschaft ist toll : the team is terrific
+Das Restaurant ist beliebt : The restaurant is popular
+Alles is relativ : Everything is relative
+Ich mache doch nichts kaputt : I am not breaking anything
+Das ist allgemein richtig : That is generally right
+Die Butter schmeckt komisch : The butter tastes strange
+Sein Schlaf ist fest : His sleep is sound
+Der Teller is auch kaputt : The plate is broken too
+Ihr Gegner ist extrem : Her opponent is extreme
+Das Leder ist fest : The leather is firm
+Ja tatsächlich : Yes, really
+Ich habe nichts mit him gemeinsam : I have nothing in common with him
+Es ist egal wer du bist : It does not matter who you are 
+Bäume sind nützlich : Trees are valuable
+Haut ist sichtbar : Skin is visible
+Luft ist notwendig : Air is necessary
+Beziehungen sind praktisch : Relationships are practical
+We sprachen deutlich : We speak clearly
+Mathematik ist praktisch im Alltag : Mathematics is practical in everyday life
+Was ist möglich : What is possible
+Bleib positiv : stay positive
+Sie ist unabhängig : She is independent
+
