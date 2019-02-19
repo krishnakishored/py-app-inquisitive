@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if user %}
+    <h3>Hello, {{ user.username }}!</h3>
+    {% else %}
+    <h3>Hello, Besucher !</h3>
+    {% endif %}
+    <p>Here's your daily list of words: </p>
+    
+    {% for word in words %}
+    <div>
+        <p>{{ word.english}} : <b>{{ word.german }}</b></p>
+    </div>
+    {% endfor %}
+    
+{% endblock %}

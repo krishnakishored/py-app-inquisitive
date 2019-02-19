@@ -9,8 +9,8 @@ You did not provide the "FLASK_APP" environment variable, and a "wsgi.py" or "ap
 *The most common reason is a typo or because you did not actually create an app object.*
 
 
-`$ flask run`
-or  `$ python -m flask run `
+$ `flask run`
+or  $ `python -m flask run `
     * Running on http://127.0.0.1:5000/
 
 #### Externally Visible Server

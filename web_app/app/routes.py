@@ -24,3 +24,12 @@ def login():
 		# return redirect('/index')
 		return redirect(url_for('index'))
 	return render_template('login.html', title='Sign In', form=form)
+
+
+@app.route('/words',methods=['GET','POST'])    
+def random_words():
+    words = [
+            {'german': 'erzählen', 'english' : 'to narrate'}, 
+            {'german': 'entsprechen', 'english' : 'to correspond'} 
+    ]
+    return render_template('words.html', title='Words', words=words)

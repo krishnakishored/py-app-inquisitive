@@ -9,7 +9,8 @@ class User(db.Model):
     password_hash = db.Column(db.String(128))
 
     def __repr__(self):
-        return '<User {}>'.format(self.username)    
+        return '<User {}>'.format(self.username)  
+        
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
@@ -18,3 +19,12 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
+
+class Verb(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    german = db.Column(db.String(128),unique=True, nullable=False, index=True)
+    english = db.Column(db.String(128),nullable=False)
+    partsofspeech = db.Column(db.String(32))
+    
+    def __repr__(self):
+        return '{0} : {1}'.format(self.german, self.english)
