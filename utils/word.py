@@ -40,7 +40,7 @@ populate a list of (key,value) for the quiz
 '''
 
 
-def build_word_dict_from_file(filename='./data/german_english.txt',delimiter=':'):
+def build_word_dict_from_file(filename,delimiter):
     '''
         reads german:english pairs from files and returns a dictionary of words
     '''
@@ -64,7 +64,7 @@ def get_wordpairs_from_file(num_of_questions=10):
     
     wordpair_list = []
     # #populate all the pairs
-    german_english_pairs = build_word_dict_from_file()
+    german_english_pairs = build_word_dict_from_file('./data/input/german_english.txt',':')
     
     for n in range(num_of_questions):
         current_word = Word()

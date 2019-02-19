@@ -101,3 +101,16 @@ CREATE TABLE IF NOT EXISTS sentence (
                                     );
 CREATE INDEX i_sentence_german_word ON master(german_word); 
 CREATE INDEX i_sentence_english_word ON master(english_word);
+
+
+CREATE TABLE IF NOT EXISTS phrase (
+                                        id integer PRIMARY KEY,
+                                        german_word text UNIQUE NOT NULL,
+                                        english_word text NOT NULL,
+                                        -- plural text,
+                                        partsofspeech text
+                                        -- theme text
+                                        
+                                    );
+CREATE INDEX i_phrase_german_word ON phrase(german_word); 
+CREATE INDEX i_phrase_english_word ON phrase(english_word);

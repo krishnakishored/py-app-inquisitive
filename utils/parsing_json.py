@@ -58,6 +58,6 @@ def create_json_from_textfile(ip,delimiter):
 
 
 if __name__=="__main__":
-    wordlist = create_json_from_textfile("./data/german_english.txt",":")
-    with open("./data/ger_eng.json",'a') as fp:
+    wordlist = create_json_from_textfile("./data/input/german_english.txt",":")
+    with open("./data/input/ger_eng.json",'a') as fp:
         json.dump(wordlist,fp)

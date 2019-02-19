@@ -119,7 +119,7 @@ def run_inquisitive_with_args(*args,**kwargs):
     parser = argparse.ArgumentParser(description='inquisitive app')
     
     parser.add_argument("-m","--mode", help="choose (i)nteractive or (q)uiz ",default="q")
-    parser.add_argument("-t","--type", help="choose parts of speech - sentence, verb, noun, preposition, .. ",default="sentence")
+    parser.add_argument("-t","--type", help="choose parts of speech - sentence, verb, noun, preposition,adverb, phrase ",default="phrase")
     parser.add_argument("-n","--count", help="choose no.of questions",type=int,default=5)
     parser.add_argument("-db","--database", help="select the database",default='./data/sqlite3/inquisitive.db')
     args = parser.parse_args()

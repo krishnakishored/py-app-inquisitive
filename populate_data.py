@@ -101,12 +101,13 @@ if __name__ == "__main__":
 	# Populate tables
 	'''
 	table_file_dictionary = {
-		# 'sentence': './data/sentence.txt',
-		# 'noun': './data/noun.txt', 
-		# 'verb': './data/verb.txt',
-		# 'preposition': './data/preposition.txt',
-		# 'conjunction': './data/conjunction.txt', 	
-		'adverb': './data/adverb.txt'
+		# 'sentence': './data/input/sentence.txt',
+		# 'noun': './data/input/noun.txt', 
+		# 'verb': './data/input/verb.txt',
+		# 'preposition': './data/input/preposition.txt',
+		# 'conjunction': './data/input/conjunction.txt', 	
+		# 'adverb': './data/input/adverb.txt',
+		'phrase': './data/input/phrase.txt'
 	}	
 	delimiter= ":"
 	populate_subtables(database,table_file_dictionary,delimiter)

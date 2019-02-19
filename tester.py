@@ -3,7 +3,7 @@ from  utils.io_handling import build_word_dict_from_file, display_keyvalue_pairs
 
 
 if __name__ == "__main__":
-    # filename = './data/german_english.txt'
+    # filename = './data/input/german_english.txt'
     # word_dictionary={}#may use a existing dictionary also - appends to the items
     delimiter=':'
     # build_word_dict_from_file(filename,delimiter,word_dictionary)
@@ -16,8 +16,8 @@ if __name__ == "__main__":
     # # cass_handler.insert_dictionary_data(word_dictionary)
     # cass_handler.select_data()
 
-    file_in = './data/sentence.txt'
-    file_out = './data/sentence_out.txt'
+    file_in = './data/input/sentence.txt'
+    file_out = './data/input/sentence_out.txt'
     # swap_words_on_delimiter(file_in,delimiter,file_out)
     discard_lines_with_characters(file_in,file_out,'[]')
 
