@@ -211,7 +211,7 @@ Ich würde Sie sofort einstellen : I would hire you immediately
 Jeder Cent würde zählen : Every cent would count
 Er könnte es machen : He could do it 
 Könntest du die Frage wiederholen? : Could you repeat the question
-Ich hätte ihr Buch nicht veröffentlicht : I would not have published her book
+Ich hätte ihr Buch nicht veröffentlicht : I ould not have published her book
 Wir wären für immer Freunde gewesen : We would have been friends forever
 Ich hätte nein gesagt : I would have said no
 Wir hätten es von ihr erfahren : We would have found it out from her
@@ -222,3 +222,77 @@ Das wäre gut gewesen : That would have been good
 Wir dachten, du hättest uns verlassen : We thought you had left us
 Ich wäre nie auf die Idee gekommen : I would never have thought of that
 Sie wären für ihn gut gewesen : They would have been good for him
+Drücken wir den hinweis : Let's print the note
+Geld is wertvoll : Gold is valuable
+Sicherheit ist haüfig teuer : Safety is often costly
+Information und Verhalten : Information and behavior
+The Lage : the position
+die Auswahl : the selection
+die ergebnisse sind da : the results are there
+Der höchste Berg von Africa : The highest mountain of Africa
+Sind das günstige Hotels? : Are these cheap hotels
+Der ehemalige Bahnhof ist jetzt ein Restaurant : The former train station is a restaurant now.
+Ja, mir geht es gut : Yes I am fine 
+Wie geht es ihm : How is him 
+Was gibst du diesem Hund? : What do you give this dog?
+Ist dir schlecht ? : Are you sick
+Wie geht es deiner Frau : How is your wife doing?
+Er bringst es mir : He is bringing it to me
+Warum hilfst du ihrem Mann : Why are you helping her husband
+Meinen Freunden geht es gut : My friends are doing fine
+Ich zeige dieser Frau den Garten : I show the garden to this woman
+Hans ist der Bruder von Karl : Hans is Karl's brother
+Trinkst du beim Essen : Do you drink while eating
+In dem gesamten Haus gibt es drei Fenster  : The entire house has three windows.
+Was passiert mit den privaten Daten?  : What happens to the personal data?
+Sie schenkt ihm ein Schwein : She gives him a pig
+Er ersetzt alles mit persönlichen Namen : He replaces everything with personal names.
+Sprichst du mit der bekannten Ärztin : Are you talking to that famous doctor?
+Was passiert an einem normalen Tag? :  What happens on a normal day?
+Sie ist jetzt in ihrer eigenen Welt:  She is in her own world now
+Er spricht von den vergangenen Tagen : He is talking about the past days
+Hunde schwimmen sehr gern : Dogs really like to swim 
+Das Haus ist eher klein : The house is rather small
+Die Hochzeit ist super : The wedding is excellent
+Das ist nicht ganz richtig : That is not entirely correct
+Guten Flug! : Have a good flight
+Sei nicht traurig : Don't be sad 
+Geht ohne mich : Go without me
+Lass das! : Leave it
+Ruf sie : Call her
+Geht alleine! : Go alone 
+Handelt langsam! : Act slowly
+Bleib bei mir : Stay with me 
+Der gesamte Betrag : the entire amount
+Wer ist für die Zahlung verantwortlich? : Who is responsible for the payment?
+Die Rechnung ist richtig : The bill is correct 
+Für sehr hohe Zinsen natürlich : For very high interest ofcourse
+Es gibt keine Frist : There is no deadline
+Wann hatte sie ihn verlassen : When had she left him?
+Sie hatten vor dem Frühstück die Schüler geprüft : They had tested the students before the breakfast
+Nachdem ich Deutschland verlassen hatte, war ich traurig :  After I had left Germany, I was sad
+Sie hatten das Spielzeug noch nicht geprüft : They had not tested the toy yet
+Ich hatte seit Tagen nichts mehr gegessen : I had not eaten in days
+Wie hatte sie davon erfahren : How had she found out about it?
+Ihr hattet  die gute Nachricht für euch behalten : You had kept the good news to yourselves
+Ich hatte durch die Zeitung davon erfahren : I had found out about it from the newspaper
+Nachdem sie mich verlassen hatte, konnte ich nicht mehr schlafen : After she had left me, I could not sleep anymore.
+Was bin ich ohne dich? : What am I without you
+Der Mann fährt die Straße entlang : The man is driving along the street 
+Ich kenne ihn durch einen Freund : I know him through a friend
+Was ist das für ein Zeug? : What is this stuff?
+Irgendwann reicht es : At some point it is enough
+Sie sagt irgendwas : She says something
+Ich bin irgendwie traurig : Somehow I am sad
+Kennt irgendwer ein Rezept : Does anyone know a recipe
+Ich bin irgendwie traurig : Somehow I am sad
+Pass auf dich auf : Take care of yourself
+Wegen ihm beginnen wir : Because of him, we are beginning.
+Der Vögel sitzt  auf dem Tisch : The birds are sitting on the table
+Wann kommen wir an? : When do we arrive 
+Das Öl ist im Laden : The oil is in the store.
+Wir essen, während wir laufen : We eat as we walk
+Zwölf geteilt durch vier gleich drei : Twelve divided by four equals three
+
+    
+
